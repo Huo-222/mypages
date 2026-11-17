@@ -76,6 +76,11 @@ dialog .close-preview{width:44px;height:44px;display:grid;place-items:center;pad
   @keyframes intro-mark{from{opacity:0;scale:.55;rotate:-30deg}to{opacity:1;scale:1;rotate:0deg}}
   @keyframes intro-away{from{opacity:1;visibility:visible}to{opacity:0;visibility:hidden}}
 }
+@media (hover:hover) and (pointer:fine) and (min-width:691px) and (prefers-reduced-motion:no-preference){
+  .card:focus-within{animation:card-in .45s calc(var(--intro-delay,0s) + .14s) ease both}
+  .card:nth-child(2):focus-within{animation-delay:calc(var(--intro-delay,0s) + .23s)}
+  .card .visit:focus-visible{animation:words-in .5s calc(var(--intro-delay,0s) + var(--word-delay,0s)) ease both}
+}
 </style>
 </head>
 <body>
