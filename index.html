@@ -49,7 +49,10 @@ dialog .visit{display:inline-block}
 .brand svg{width:20px;height:22px;flex:none}
 .explore{border:0;border-radius:999px;padding:8px 13px;background:#26231f;color:white;font:inherit;cursor:pointer}
 .explore:hover{background:#553684}
-.explore:focus-visible,#projects:focus-visible{outline:3px solid #67459a;outline-offset:4px}
+.explore:focus-visible{outline:3px solid #67459a;outline-offset:4px}
+.preview-title:focus{outline:none}
+dialog .close-preview{width:44px;height:44px;display:grid;place-items:center;padding:0;flex:none}
+.close-preview svg{width:19px;height:19px}
 .intro-screen{display:none}
 @media(prefers-reduced-motion:no-preference){
   .first-visit{--intro-delay:1s}
@@ -100,17 +103,18 @@ dialog .visit{display:inline-block}
 </header>
 <main>
 <section class="hero"><span class="eyebrow">MY WEB COLLECTION</span><svg class="spark" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
-  <path fill="currentColor" d="M50 3C55 22 57 31 62 36C69 35 77 29 91 19C83 35 77 43 77 49C82 55 90 57 99 60C85 64 75 66 70 71C70 78 73 87 77 97C65 89 57 82 50 81C43 82 35 89 23 97C27 86 30 78 30 71C25 66 15 64 1 60C10 57 18 55 23 49C23 43 17 35 9 19C23 29 31 35 38 36C43 31 45 22 50 3Z"/>
-  <circle cx="50" cy="55" r="6" fill="#faf7ee"/>
+  <path fill="currentColor" d="M46 9C49 34 56 42 81 45C56 48 49 56 46 81C43 56 36 48 11 45C36 42 43 34 46 9Z"/>
+  <path fill="currentColor" opacity=".65" d="M82 8C83 17 86 20 95 21C86 22 83 25 82 34C81 25 78 22 69 21C78 20 81 17 82 8Z"/>
+  <circle cx="79" cy="76" r="4" fill="currentColor" opacity=".4"/>
 </svg><h1>我的<span>網頁作品集</span></h1><p>把做過的小網站收在這裡。挑一張卡片，逛逛吧！</p></section>
-<section id="projects" class="grid" aria-label="網站作品" tabindex="-1"></section>
+<section id="projects" class="grid" aria-label="網站作品"></section>
 <noscript><p><a href="./ProjectM/" target="_blank" rel="noopener">我的專案｜ProjectM</a> ・ <a href="./shopping-list/" target="_blank" rel="noopener">日常採購簿</a></p></noscript>
 </main>
 <footer><span>✦ HUO'S PAGES</span><span id="count"></span></footer>
 <dialog aria-labelledby="preview-title">
   <div class="row">
-    <h2 id="preview-title"></h2>
-    <form method="dialog"><button autofocus>關閉</button></form>
+    <h2 id="preview-title" class="preview-title" tabindex="-1" autofocus></h2>
+    <form method="dialog"><button class="close-preview" type="submit" aria-label="關閉預覽"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5 5 19"/></svg></button></form>
   </div>
   <img id="preview-image" alt="">
   <a id="preview-visit" class="visit" target="_blank" rel="noopener">進入網站 ↗</a>
@@ -124,7 +128,6 @@ const projects = [
 const base = 'https://huo-222.github.io/mypages/';
 const root = document.querySelector('#projects');
 document.querySelector('#explore').addEventListener('click', () => {
-  root.focus({ preventScroll: true });
   root.scrollIntoView({ block: 'start' });
 });
 const previewDialog = document.querySelector('dialog');
