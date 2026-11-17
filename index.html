@@ -55,7 +55,7 @@ dialog .visit{display:inline-block}
     position:fixed;inset:0;z-index:100;display:grid;place-content:center;justify-items:center;gap:10px;
     background:#d8c5f3;color:#392558;pointer-events:none;animation:intro-away .45s .78s ease-in both;
   }
-  .intro-screen span:first-child{font-size:clamp(64px,16vw,140px);line-height:1;color:#a53965;animation:intro-mark .7s ease both}
+  .intro-screen svg{width:clamp(90px,19vw,148px);height:auto;filter:drop-shadow(0 8px 0 #39255820);animation:intro-mark .7s ease both}
   .intro-screen span:last-child{font-weight:800;letter-spacing:.16em;animation:words-in .45s .12s ease both}
   .hero .eyebrow,.hero h1,.hero p,header a,.card h2,.card p,.card .label,.card .visit,footer span{
     animation:words-in .5s calc(var(--intro-delay,0s) + var(--word-delay,0s)) ease both;
@@ -74,7 +74,17 @@ dialog .visit{display:inline-block}
 </style>
 </head>
 <body>
-<div class="intro-screen" aria-hidden="true"><span>✿</span><span>HUO'S PAGES</span></div>
+<div class="intro-screen" aria-hidden="true">
+  <svg viewBox="0 0 128 146" fill="none" focusable="false">
+    <path d="M43 84h53l-23 50a4 4 0 0 1-7 0Z" fill="#FFC878" stroke="#392558" stroke-width="4" stroke-linejoin="round"/>
+    <path d="m52 97 24 19m-12-28 20 17m4-16-25 27" stroke="#B46D46" stroke-width="3" stroke-linecap="round"/>
+    <path d="M44 54c-4-19 10-36 29-36 18 0 32 15 30 33l-9 13-44 1Z" fill="#FF96BC" stroke="#392558" stroke-width="4"/>
+    <path d="M37 71c0-10 8-16 17-16h37c12 0 19 8 19 18 0 8-6 13-13 13-5 0-8-2-11-5-4 6-11 7-17 1-6 6-13 6-18 1-8 3-14-3-14-12Z" fill="#8DE2DD" stroke="#392558" stroke-width="4" stroke-linejoin="round"/>
+    <path d="m64 35 4 3m13-8 2 5m8 10-5 1" stroke="#FFF5D6" stroke-width="4" stroke-linecap="round"/>
+    <path d="M21 42v16m-8-8h16m84-26v10m-5-5h10" stroke="#FFF5D6" stroke-width="4" stroke-linecap="round"/>
+  </svg>
+  <span>HUO'S PAGES</span>
+</div>
 <header><a class="brand" href="./">✿ HUO'S PAGES</a><button type="button" id="explore" class="explore">探索作品 ↓</button></header>
 <main>
 <section class="hero"><span class="eyebrow">MY WEB COLLECTION</span><span class="spark" aria-hidden="true">✳</span><h1>我的<span>網頁作品集</span></h1><p>把做過的小網站收在這裡。挑一張卡片，逛逛吧！</p></section>
