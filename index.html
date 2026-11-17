@@ -7,6 +7,30 @@
 <title>我的網頁作品集｜Huo</title>
 <style>
 *{box-sizing:border-box}body{margin:0;color:#26231f;background:#faf7ee;font:16px/1.6 system-ui,"Microsoft JhengHei",sans-serif}main,header,footer{width:min(1080px,calc(100% - 36px));margin:auto}header,footer{display:flex;justify-content:space-between;align-items:center;padding:22px 0;font-size:13px;font-weight:750}header{border-bottom:1px solid #26231f28}a{color:inherit}header a{text-decoration:none}.brand{letter-spacing:.13em}.hero{position:relative;padding:56px 0 44px}.eyebrow,.label{font-size:12px;font-weight:800;letter-spacing:.15em}.eyebrow{display:inline-block;padding:5px 14px;background:#f9db72;border-radius:40px;transform:rotate(-4deg)}h1{font-size:clamp(45px,8vw,94px);line-height:1.12;letter-spacing:-.08em;margin:15px 0}h1 span{color:#67459a}.hero p{margin:0;color:#51483f}.spark{position:absolute;right:8%;top:20%;font-size:clamp(43px,10vw,120px);color:#bd4773;line-height:1;transform:rotate(12deg)}.grid{display:grid;grid-template-columns:1.15fr 1fr;gap:16px}.card{min-width:0;overflow:hidden;border-radius:26px;background:#d8c5f3;padding:24px;display:flex;flex-direction:column}.card:nth-child(2n){background:#fac394}.card:nth-child(3n){background:#d7e59e}.row{display:flex;justify-content:space-between;align-items:center}.icon{display:grid;place-items:center;background:#fff9;border-radius:14px;width:46px;height:46px;font-size:23px}.icon img{width:27px;height:27px;object-fit:contain}.preview{position:relative;overflow:hidden;margin:19px 0 13px;height:220px;border:5px solid #ffffff9c;border-radius:18px;isolation:isolate;background:#f9f7ff}.preview iframe{position:absolute;top:0;left:0;width:1024px;height:530px;border:0;transform:scale(.52);transform-origin:top left;pointer-events:none;background:white}.preview img{width:100%;height:100%;object-fit:contain;object-position:top}.preview small{position:absolute;bottom:8px;left:8px;background:white;border-radius:99px;padding:2px 9px;font-weight:700}.card h2{font-size:clamp(22px,3vw,33px);line-height:1.25;margin:8px 0}.card p{margin:0 0 17px;color:#403343}.visit{margin-top:auto;align-self:flex-start;background:#26231f;color:white;border-radius:40px;padding:9px 16px;text-decoration:none;font-weight:750}.visit:hover{background:#553684}.visit:focus-visible,header a:focus-visible{outline:3px solid #6343a0;outline-offset:4px}footer{margin-top:24px;border-top:1px solid #26231f28}@media(max-width:690px){.grid{grid-template-columns:1fr}.hero{padding:40px 0 30px}.spark{right:4%;top:8%;font-size:38px}.card{padding:18px}.preview{height:184px}.preview iframe{transform:scale(.45)}}@media(prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+.preview-button{position:relative;display:block;width:100%;padding:0;border:0;background:transparent;cursor:zoom-in;text-align:left}
+.preview-button .preview,.preview-button img{display:block}
+.zoom-label{position:absolute;right:12px;bottom:22px;border-radius:999px;padding:6px 10px;background:#26231f;color:white;font:700 12px/1.4 system-ui}
+.preview-button:focus-visible,dialog button:focus-visible{outline:3px solid #67459a;outline-offset:4px}
+.card:focus-within{box-shadow:0 8px 24px #26231f22}
+dialog{width:min(960px,calc(100% - 28px));max-height:calc(100dvh - 28px);padding:clamp(14px,3vw,26px);border:0;border-radius:24px;background:#faf7ee;color:#26231f}
+dialog::backdrop{background:#252037bf}
+dialog h2{font-size:clamp(19px,4vw,28px);margin:0}
+dialog img{display:block;width:100%;max-height:65dvh;object-fit:contain;margin:14px 0;border-radius:12px}
+dialog button{border:0;border-radius:999px;background:#e8dcf6;color:inherit;padding:9px 14px;cursor:pointer;font:inherit}
+dialog .row{gap:12px}
+dialog .visit{display:inline-block}
+@media(prefers-reduced-motion:no-preference){
+  .card,.preview-button img,.visit{transition:transform .22s ease,box-shadow .22s ease,background-color .22s ease}
+  .card{animation:card-in .45s ease both}
+  .card:nth-child(2){animation-delay:.09s}
+  dialog[open]{animation:card-in .22s ease both}
+  @keyframes card-in{from{opacity:0;translate:0 10px}to{opacity:1;translate:0 0}}
+}
+@media(hover:hover) and (prefers-reduced-motion:no-preference){
+  .card:hover{transform:translateY(-5px);box-shadow:0 12px 24px #26231f22}
+  .preview-button:hover img{transform:scale(1.035)}
+  .visit:hover{transform:translateX(3px)}
+}
 </style>
 </head>
 <body>
@@ -17,6 +41,14 @@
 <noscript><p><a href="./ProjectM/index.html">我的專案｜ProjectM</a> ・ <a href="./shopping-list/index.html">日常採購簿</a></p></noscript>
 </main>
 <footer><span>✦ HUO'S PAGES</span><span id="count"></span></footer>
+<dialog aria-labelledby="preview-title">
+  <div class="row">
+    <h2 id="preview-title"></h2>
+    <form method="dialog"><button autofocus>關閉</button></form>
+  </div>
+  <img id="preview-image" alt="">
+  <a id="preview-visit" class="visit">進入網站 ↗</a>
+</dialog>
 <script>
 // Add one entry per project. Optional: icon and screenshot paths relative to this homepage.
 const projects = [
@@ -25,24 +57,51 @@ const projects = [
 ];
 const base = 'https://huo-222.github.io/mypages/';
 const root = document.querySelector('#projects');
+const previewDialog = document.querySelector('dialog');
+const previewTitle = document.querySelector('#preview-title');
+const previewImage = document.querySelector('#preview-image');
+const previewVisit = document.querySelector('#preview-visit');
+previewDialog.addEventListener('click', event => {
+  if (event.target !== previewDialog) return;
+  const bounds = previewDialog.getBoundingClientRect();
+  if (event.clientX < bounds.left || event.clientX > bounds.right ||
+      event.clientY < bounds.top || event.clientY > bounds.bottom) previewDialog.close();
+});
 const el = (tag, cls, str) => { const e=document.createElement(tag); if(cls)e.className=cls; if(str)e.textContent=str; return e; };
 function setIcon(icon, src, mark) {
   const img = el('img'); img.alt=''; img.src=src; img.onerror=()=>{icon.textContent=mark;}; icon.replaceChildren(img);
 }
 projects.forEach((p,i)=>{
   const url = new URL(p.path,base);
-  const card=el('article','card'), row=el('div','row'), icon=el('span','icon',p.mark), preview=el('div','preview');
+  const card=el('article','card'), row=el('div','row'), icon=el('span','icon',p.mark), preview=el('span','preview');
   icon.setAttribute('aria-hidden','true');
   row.append(icon,el('span','label','PROJECT / '+String(i+1).padStart(2,'0')));
   if(p.screenshot){
-    const img=el('img'); img.alt=p.title+'的網站畫面'; img.src=p.screenshot; img.loading='lazy'; preview.append(img);
+    const img = el('img');
+    img.alt = '';
+    img.src = p.screenshot;
+    img.loading = 'lazy';
+    preview.append(img);
+    const zoom = el('button', 'preview-button');
+    zoom.type = 'button';
+    zoom.setAttribute('aria-label', '放大預覽：' + p.title);
+    zoom.setAttribute('aria-haspopup', 'dialog');
+    zoom.append(preview, el('span', 'zoom-label', '⊕ 放大預覽'));
+    zoom.addEventListener('click', () => {
+      previewTitle.textContent = title.textContent;
+      previewImage.alt = title.textContent + '的網站畫面';
+      previewImage.src = img.src;
+      previewVisit.href = url.href;
+      previewDialog.showModal();
+    });
   }else{
+    preview.style.display = 'block';
     const frame=el('iframe'); frame.title=p.title+'預覽'; frame.tabIndex=-1; frame.loading='lazy'; frame.setAttribute('sandbox','allow-scripts'); frame.setAttribute('inert',''); frame.src=url.href;
     preview.setAttribute('aria-hidden','true'); preview.append(frame,el('small','','網站預覽'));
   }
   const title=el('h2','',p.title), visit=el('a','visit','進入網站 ↗'); visit.href=url.href;
   visit.setAttribute('aria-label','進入 '+p.title);
-  card.append(row,preview,title,el('p','',p.description),visit); root.append(card);
+  card.append(row,preview.parentElement || preview,title,el('p','',p.description),visit); root.append(card);
   if(p.icon)setIcon(icon,new URL(p.icon,location.href).href,p.mark);
   if(location.origin===url.origin) fetch(url).then(r=>{if(!r.ok)throw Error();return r.text();}).then(html=>{
     const doc=new DOMParser().parseFromString(html,'text/html');
