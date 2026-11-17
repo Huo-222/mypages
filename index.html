@@ -6,6 +6,9 @@
 <meta name="theme-color" content="#faf7ee">
 <title>我的網頁作品集｜Huo</title>
 <script>
+if (location.hash === '#projects') {
+  history.replaceState(history.state, '', location.pathname + location.search);
+}
 try {
   if (matchMedia('(prefers-reduced-motion: no-preference)').matches &&
       !localStorage.getItem('huo-portfolio-intro-seen')) {
@@ -42,6 +45,9 @@ dialog .visit{display:inline-block}
   .preview-button:hover img{transform:scale(1.035)}
   .visit:hover{transform:translateX(3px)}
 }
+.explore{border:0;border-radius:999px;padding:8px 13px;background:#26231f;color:white;font:inherit;cursor:pointer}
+.explore:hover{background:#553684}
+.explore:focus-visible,#projects:focus-visible{outline:3px solid #67459a;outline-offset:4px}
 .intro-screen{display:none}
 @media(prefers-reduced-motion:no-preference){
   .first-visit{--intro-delay:1s}
@@ -69,10 +75,10 @@ dialog .visit{display:inline-block}
 </head>
 <body>
 <div class="intro-screen" aria-hidden="true"><span>✿</span><span>HUO'S PAGES</span></div>
-<header><a class="brand" href="./">✿ HUO'S PAGES</a></header>
+<header><a class="brand" href="./">✿ HUO'S PAGES</a><button type="button" id="explore" class="explore">探索作品 ↓</button></header>
 <main>
 <section class="hero"><span class="eyebrow">MY WEB COLLECTION</span><span class="spark" aria-hidden="true">✳</span><h1>我的<span>網頁作品集</span></h1><p>把做過的小網站收在這裡。挑一張卡片，逛逛吧！</p></section>
-<section id="projects" class="grid" aria-label="網站作品"></section>
+<section id="projects" class="grid" aria-label="網站作品" tabindex="-1"></section>
 <noscript><p><a href="./ProjectM/index.html">我的專案｜ProjectM</a> ・ <a href="./shopping-list/index.html">日常採購簿</a></p></noscript>
 </main>
 <footer><span>✦ HUO'S PAGES</span><span id="count"></span></footer>
@@ -92,6 +98,10 @@ const projects = [
 ];
 const base = 'https://huo-222.github.io/mypages/';
 const root = document.querySelector('#projects');
+document.querySelector('#explore').addEventListener('click', () => {
+  root.focus({ preventScroll: true });
+  root.scrollIntoView({ block: 'start' });
+});
 const previewDialog = document.querySelector('dialog');
 const previewTitle = document.querySelector('#preview-title');
 const previewImage = document.querySelector('#preview-image');
