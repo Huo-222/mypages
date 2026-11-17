@@ -101,7 +101,7 @@ dialog .visit{display:inline-block}
 <main>
 <section class="hero"><span class="eyebrow">MY WEB COLLECTION</span><span class="spark" aria-hidden="true">✳</span><h1>我的<span>網頁作品集</span></h1><p>把做過的小網站收在這裡。挑一張卡片，逛逛吧！</p></section>
 <section id="projects" class="grid" aria-label="網站作品" tabindex="-1"></section>
-<noscript><p><a href="./ProjectM/projectm.html">我的專案｜ProjectM</a> ・ <a href="./shopping-list/shopping.html">日常採購簿</a></p></noscript>
+<noscript><p><a href="./ProjectM/" target="_blank" rel="noopener">我的專案｜ProjectM</a> ・ <a href="./shopping-list/" target="_blank" rel="noopener">日常採購簿</a></p></noscript>
 </main>
 <footer><span>✦ HUO'S PAGES</span><span id="count"></span></footer>
 <dialog aria-labelledby="preview-title">
@@ -110,13 +110,13 @@ dialog .visit{display:inline-block}
     <form method="dialog"><button autofocus>關閉</button></form>
   </div>
   <img id="preview-image" alt="">
-  <a id="preview-visit" class="visit">進入網站 ↗</a>
+  <a id="preview-visit" class="visit" target="_blank" rel="noopener">進入網站 ↗</a>
 </dialog>
 <script>
 // Add one entry per project. Optional: icon and screenshot paths relative to this homepage.
 const projects = [
-  {path:'ProjectM/projectm.html', title:'我的專案｜ProjectM', icon:'portfolio-assets/projectm.svg', screenshot:'portfolio-assets/projectm.png', mark:'✦', description:'整理專案和任務，一眼掌握進度與下一步。'},
-  {path:'shopping-list/shopping.html', title:'日常採購簿', icon:'portfolio-assets/shopping.svg', screenshot:'portfolio-assets/shopping.png', mark:'🛒', description:'集中記錄網購品項與花費，掌握出貨和收貨進度。'}
+  {path:'ProjectM/', title:'我的專案｜ProjectM', icon:'portfolio-assets/projectm.svg', screenshot:'portfolio-assets/projectm.png', mark:'✦', description:'整理專案和任務，一眼掌握進度與下一步。'},
+  {path:'shopping-list/', title:'日常採購簿', icon:'portfolio-assets/shopping.svg', screenshot:'portfolio-assets/shopping.png', mark:'🛒', description:'集中記錄網購品項與花費，掌握出貨和收貨進度。'}
 ];
 const base = 'https://huo-222.github.io/mypages/';
 const root = document.querySelector('#projects');
@@ -167,6 +167,8 @@ projects.forEach((p,i)=>{
     preview.setAttribute('aria-hidden','true'); preview.append(frame,el('small','','網站預覽'));
   }
   const title=el('h2','',p.title), visit=el('a','visit','進入網站 ↗'); visit.href=url.href;
+  visit.target = '_blank';
+  visit.rel = 'noopener';
   visit.setAttribute('aria-label','進入 '+p.title);
   card.append(row,preview.parentElement || preview,title,el('p','',p.description),visit); root.append(card);
   if(p.icon)setIcon(icon,new URL(p.icon,location.href).href,p.mark);
