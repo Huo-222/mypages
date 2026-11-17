@@ -272,6 +272,17 @@
     @media(max-width:680px){.top{padding:13px 12px;border-radius:17px}.stats .stat{min-height:82px;padding:13px 9px 11px 49px}.stats .stat:before{left:10px;top:17px;width:29px;height:29px}.stats .stat label{font-size:10px}.stats .stat strong{font-size:17px}.list-card{padding:16px}.tab{padding:9px 8px}}
     @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 
+    /* Keep detail labels and inputs on one shared three-column grid. */
+    .detail-fields{--detail-index:58px;--detail-quantity:88px;width:100%;min-width:0}
+    .detail-fields-head,.detail-field-row{grid-template-columns:var(--detail-index) minmax(0,1fr) var(--detail-quantity);column-gap:8px;width:100%}
+    .detail-fields-head span:first-child,.detail-field-row>label{text-align:left}
+    .detail-fields-head span:nth-child(2){text-align:left}
+    .detail-fields-head span:last-child{text-align:center}
+    .detail-field-row input.detail-name,.detail-field-row input.detail-quantity{width:100%;min-width:0}
+    .detail-field-row input.detail-quantity{-moz-appearance:textfield;appearance:textfield;text-align:center!important;font-variant-numeric:tabular-nums;padding-left:4px!important;padding-right:4px!important}
+    .detail-field-row input.detail-quantity::-webkit-inner-spin-button,.detail-field-row input.detail-quantity::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+    @media(max-width:760px){.detail-fields{--detail-index:48px;--detail-quantity:72px}.detail-fields-head,.detail-field-row{grid-template-columns:var(--detail-index) minmax(0,1fr) var(--detail-quantity);column-gap:6px}}
+    @media(max-width:380px){.detail-fields{--detail-index:42px;--detail-quantity:64px}.detail-fields-head,.detail-field-row{grid-template-columns:var(--detail-index) minmax(0,1fr) var(--detail-quantity);column-gap:4px}}
   </style>
 </head>
 <body>
