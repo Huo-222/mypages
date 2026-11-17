@@ -5,6 +5,17 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#faf7ee">
 <title>我的網頁作品集｜Huo</title>
+<script>
+try {
+  if (matchMedia('(prefers-reduced-motion: no-preference)').matches &&
+      !localStorage.getItem('huo-portfolio-intro-seen')) {
+    localStorage.setItem('huo-portfolio-intro-seen', '1');
+    document.documentElement.classList.add('first-visit');
+  }
+} catch {
+  // The homepage remains usable when browser storage is unavailable.
+}
+</script>
 <style>
 *{box-sizing:border-box}body{margin:0;color:#26231f;background:#faf7ee;font:16px/1.6 system-ui,"Microsoft JhengHei",sans-serif}main,header,footer{width:min(1080px,calc(100% - 36px));margin:auto}header,footer{display:flex;justify-content:space-between;align-items:center;padding:22px 0;font-size:13px;font-weight:750}header{border-bottom:1px solid #26231f28}a{color:inherit}header a{text-decoration:none}.brand{letter-spacing:.13em}.hero{position:relative;padding:56px 0 44px}.eyebrow,.label{font-size:12px;font-weight:800;letter-spacing:.15em}.eyebrow{display:inline-block;padding:5px 14px;background:#f9db72;border-radius:40px;transform:rotate(-4deg)}h1{font-size:clamp(45px,8vw,94px);line-height:1.12;letter-spacing:-.08em;margin:15px 0}h1 span{color:#67459a}.hero p{margin:0;color:#51483f}.spark{position:absolute;right:8%;top:20%;font-size:clamp(43px,10vw,120px);color:#bd4773;line-height:1;transform:rotate(12deg)}.grid{display:grid;grid-template-columns:1.15fr 1fr;gap:16px}.card{min-width:0;overflow:hidden;border-radius:26px;background:#d8c5f3;padding:24px;display:flex;flex-direction:column}.card:nth-child(2n){background:#fac394}.card:nth-child(3n){background:#d7e59e}.row{display:flex;justify-content:space-between;align-items:center}.icon{display:grid;place-items:center;background:#fff9;border-radius:14px;width:46px;height:46px;font-size:23px}.icon img{width:27px;height:27px;object-fit:contain}.preview{position:relative;overflow:hidden;margin:19px 0 13px;height:220px;border:5px solid #ffffff9c;border-radius:18px;isolation:isolate;background:#f9f7ff}.preview iframe{position:absolute;top:0;left:0;width:1024px;height:530px;border:0;transform:scale(.52);transform-origin:top left;pointer-events:none;background:white}.preview img{width:100%;height:100%;object-fit:contain;object-position:top}.preview small{position:absolute;bottom:8px;left:8px;background:white;border-radius:99px;padding:2px 9px;font-weight:700}.card h2{font-size:clamp(22px,3vw,33px);line-height:1.25;margin:8px 0}.card p{margin:0 0 17px;color:#403343}.visit{margin-top:auto;align-self:flex-start;background:#26231f;color:white;border-radius:40px;padding:9px 16px;text-decoration:none;font-weight:750}.visit:hover{background:#553684}.visit:focus-visible,header a:focus-visible{outline:3px solid #6343a0;outline-offset:4px}footer{margin-top:24px;border-top:1px solid #26231f28}@media(max-width:690px){.grid{grid-template-columns:1fr}.hero{padding:40px 0 30px}.spark{right:4%;top:8%;font-size:38px}.card{padding:18px}.preview{height:184px}.preview iframe{transform:scale(.45)}}@media(prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
 .preview-button{position:relative;display:block;width:100%;padding:0;border:0;background:transparent;cursor:zoom-in;text-align:left}
@@ -31,9 +42,33 @@ dialog .visit{display:inline-block}
   .preview-button:hover img{transform:scale(1.035)}
   .visit:hover{transform:translateX(3px)}
 }
+.intro-screen{display:none}
+@media(prefers-reduced-motion:no-preference){
+  .first-visit{--intro-delay:1s}
+  .first-visit .intro-screen{
+    position:fixed;inset:0;z-index:100;display:grid;place-content:center;justify-items:center;gap:10px;
+    background:#d8c5f3;color:#392558;pointer-events:none;animation:intro-away .45s .78s ease-in both;
+  }
+  .intro-screen span:first-child{font-size:clamp(64px,16vw,140px);line-height:1;color:#a53965;animation:intro-mark .7s ease both}
+  .intro-screen span:last-child{font-weight:800;letter-spacing:.16em;animation:words-in .45s .12s ease both}
+  .hero .eyebrow,.hero h1,.hero p,header a,.card h2,.card p,.card .label,.card .visit,footer span{
+    animation:words-in .5s calc(var(--intro-delay,0s) + var(--word-delay,0s)) ease both;
+  }
+  .hero h1,.card h2{--word-delay:.12s}
+  .hero p,.card p{--word-delay:.20s}
+  .card .visit,footer span{--word-delay:.28s}
+  .card{animation-delay:calc(var(--intro-delay,0s) + .14s)}
+  .card:nth-child(2){animation-delay:calc(var(--intro-delay,0s) + .23s)}
+  .hero .spark{animation:intro-mark .65s calc(var(--intro-delay,0s) + .18s) ease both}
+  header a:focus-visible,.card .visit:focus-visible,.card:focus-within{animation:none}
+  @keyframes words-in{from{opacity:0;translate:0 9px}to{opacity:1;translate:0 0}}
+  @keyframes intro-mark{from{opacity:0;scale:.55;rotate:-30deg}to{opacity:1;scale:1;rotate:0deg}}
+  @keyframes intro-away{from{opacity:1;visibility:visible}to{opacity:0;visibility:hidden}}
+}
 </style>
 </head>
 <body>
+<div class="intro-screen" aria-hidden="true"><span>✿</span><span>HUO'S PAGES</span></div>
 <header><a class="brand" href="./">✿ HUO'S PAGES</a><a href="#projects">探索作品 ↓</a></header>
 <main>
 <section class="hero"><span class="eyebrow">MY WEB COLLECTION</span><span class="spark" aria-hidden="true">✳</span><h1>我的<span>網頁作品集</span></h1><p>把做過的小網站收在這裡。挑一張卡片，逛逛吧！</p></section>
