@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#faf7ee">
+<title>我的網頁作品集｜Huo</title>
+<style>
+*{box-sizing:border-box}body{margin:0;color:#26231f;background:#faf7ee;font:16px/1.6 system-ui,"Microsoft JhengHei",sans-serif}main,header,footer{width:min(1080px,calc(100% - 36px));margin:auto}header,footer{display:flex;justify-content:space-between;align-items:center;padding:22px 0;font-size:13px;font-weight:750}header{border-bottom:1px solid #26231f28}a{color:inherit}header a{text-decoration:none}.brand{letter-spacing:.13em}.hero{position:relative;padding:56px 0 44px}.eyebrow,.label{font-size:12px;font-weight:800;letter-spacing:.15em}.eyebrow{display:inline-block;padding:5px 14px;background:#f9db72;border-radius:40px;transform:rotate(-4deg)}h1{font-size:clamp(45px,8vw,94px);line-height:1.12;letter-spacing:-.08em;margin:15px 0}h1 span{color:#67459a}.hero p{margin:0;color:#51483f}.spark{position:absolute;right:8%;top:20%;font-size:clamp(43px,10vw,120px);color:#bd4773;line-height:1;transform:rotate(12deg)}.grid{display:grid;grid-template-columns:1.15fr 1fr;gap:16px}.card{min-width:0;overflow:hidden;border-radius:26px;background:#d8c5f3;padding:24px;display:flex;flex-direction:column}.card:nth-child(2n){background:#fac394}.card:nth-child(3n){background:#d7e59e}.row{display:flex;justify-content:space-between;align-items:center}.icon{display:grid;place-items:center;background:#fff9;border-radius:14px;width:46px;height:46px;font-size:23px}.icon img{width:27px;height:27px;object-fit:contain}.preview{position:relative;overflow:hidden;margin:19px 0 13px;height:220px;border:5px solid #ffffff9c;border-radius:18px;isolation:isolate;background:#f9f7ff}.preview iframe{position:absolute;top:0;left:0;width:1024px;height:530px;border:0;transform:scale(.52);transform-origin:top left;pointer-events:none;background:white}.preview img{width:100%;height:100%;object-fit:contain;object-position:top}.preview small{position:absolute;bottom:8px;left:8px;background:white;border-radius:99px;padding:2px 9px;font-weight:700}.card h2{font-size:clamp(22px,3vw,33px);line-height:1.25;margin:8px 0}.card p{margin:0 0 17px;color:#403343}.visit{margin-top:auto;align-self:flex-start;background:#26231f;color:white;border-radius:40px;padding:9px 16px;text-decoration:none;font-weight:750}.visit:hover{background:#553684}.visit:focus-visible,header a:focus-visible{outline:3px solid #6343a0;outline-offset:4px}footer{margin-top:24px;border-top:1px solid #26231f28}@media(max-width:690px){.grid{grid-template-columns:1fr}.hero{padding:40px 0 30px}.spark{right:4%;top:8%;font-size:38px}.card{padding:18px}.preview{height:184px}.preview iframe{transform:scale(.45)}}@media(prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+</style>
+</head>
+<body>
+<header><a class="brand" href="./">✿ HUO'S PAGES</a><a href="#projects">探索作品 ↓</a></header>
+<main>
+<section class="hero"><span class="eyebrow">MY WEB COLLECTION</span><span class="spark" aria-hidden="true">✳</span><h1>我的<span>網頁作品集</span></h1><p>把做過的小網站收在這裡。挑一張卡片，逛逛吧！</p></section>
+<section id="projects" class="grid" aria-label="網站作品"></section>
+<noscript><p><a href="./ProjectM/index.html">我的專案｜ProjectM</a> ・ <a href="./shopping-list/index.html">日常採購簿</a></p></noscript>
+</main>
+<footer><span>✦ HUO'S PAGES</span><span id="count"></span></footer>
+<script>
+// Add one entry per project. Optional: icon and screenshot paths relative to this homepage.
+const projects = [
+  {path:'ProjectM/index.html', title:'我的專案｜ProjectM', icon:'portfolio-assets/projectm.svg', screenshot:'portfolio-assets/projectm.png', mark:'✦', description:'整理專案和任務，一眼掌握進度與下一步。'},
+  {path:'shopping-list/index.html', title:'日常採購簿', icon:'portfolio-assets/shopping.svg', screenshot:'portfolio-assets/shopping.png', mark:'🛒', description:'集中記錄網購品項與花費，掌握出貨和收貨進度。'}
+];
+const base = 'https://huo-222.github.io/mypages/';
+const root = document.querySelector('#projects');
+const el = (tag, cls, str) => { const e=document.createElement(tag); if(cls)e.className=cls; if(str)e.textContent=str; return e; };
+function setIcon(icon, src, mark) {
+  const img = el('img'); img.alt=''; img.src=src; img.onerror=()=>{icon.textContent=mark;}; icon.replaceChildren(img);
+}
+projects.forEach((p,i)=>{
+  const url = new URL(p.path,base);
+  const card=el('article','card'), row=el('div','row'), icon=el('span','icon',p.mark), preview=el('div','preview');
+  icon.setAttribute('aria-hidden','true');
+  row.append(icon,el('span','label','PROJECT / '+String(i+1).padStart(2,'0')));
+  if(p.screenshot){
+    const img=el('img'); img.alt=p.title+'的網站畫面'; img.src=p.screenshot; img.loading='lazy'; preview.append(img);
+  }else{
+    const frame=el('iframe'); frame.title=p.title+'預覽'; frame.tabIndex=-1; frame.loading='lazy'; frame.setAttribute('sandbox','allow-scripts'); frame.setAttribute('inert',''); frame.src=url.href;
+    preview.setAttribute('aria-hidden','true'); preview.append(frame,el('small','','網站預覽'));
+  }
+  const title=el('h2','',p.title), visit=el('a','visit','進入網站 ↗'); visit.href=url.href;
+  visit.setAttribute('aria-label','進入 '+p.title);
+  card.append(row,preview,title,el('p','',p.description),visit); root.append(card);
+  if(p.icon)setIcon(icon,new URL(p.icon,location.href).href,p.mark);
+  if(location.origin===url.origin) fetch(url).then(r=>{if(!r.ok)throw Error();return r.text();}).then(html=>{
+    const doc=new DOMParser().parseFromString(html,'text/html');
+    if(doc.title.trim()){title.textContent=doc.title.trim(); visit.setAttribute('aria-label','進入 '+title.textContent);}
+    const favicon=doc.querySelector('link[rel~="icon"][href],link[rel="apple-touch-icon"][href]');
+    if(!p.icon && favicon)setIcon(icon,new URL(favicon.getAttribute('href'),url).href,p.mark);
+    const description=doc.querySelector('meta[name="description"]')?.content.trim();
+    if(description)card.querySelector('p').textContent=description;
+  }).catch(()=>{});
+});
+document.querySelector('#count').textContent=projects.length+' 個作品';
+</script>
+</body>
+</html>
