@@ -279,9 +279,61 @@ function updateTemplatePreview(setName = true) {
   $('#projectEndNew').value = start ? workdayDateAt(start, template.days - 1) : '';
 }
 function persist(){localStorage.setItem(WORK,JSON.stringify({projects,activeId}));const p=active();if(p)localStorage.setItem(KEY,JSON.stringify(p))}function active(){return projects.find(p=>p.id===activeId)}
-function showList(){ $('#listView').hidden=false;$('#detailView').hidden=true;renderProjects() }function showDetail(){const p=active();if(!p){showList();return}$('#listView').hidden=true;$('#detailView').hidden=false;renderDetail()}
+function currentRoute() {
+  const match = location.hash.match(/^#\/project\/([^/]+)(\/logs)?$/);
+  if (!match) return {view: 'list'};
+  try {
+    return {view: match[2] ? 'logs' : 'detail', projectId: decodeURIComponent(match[1])};
+  } catch {
+    return {view: 'list'};
+  }
+}
+function renderRoute() {
+  const route = currentRoute();
+  const project = projects.find(item => item.id === route.projectId);
+  if (route.view !== 'list' && !project) {
+    history.replaceState(null, '', '#/projects');
+    toast('此瀏覽器找不到該專案，請選擇專案或匯入備份');
+    renderRoute();
+    return;
+  }
+  closeModal();
+  $('#listView').hidden = route.view !== 'list';
+  $('#detailView').hidden = route.view !== 'detail';
+  $('#logView').hidden = route.view !== 'logs';
+  if (project) { activeId = project.id; persist(); }
+  if (route.view === 'list') {
+    document.title = '我的專案｜ProjectM';
+    renderProjects();
+  } else if (route.view === 'detail') {
+    document.title = project.project + '｜ProjectM';
+    renderDetail();
+  } else {
+    document.title = project.project + '｜變更紀錄';
+    $('#logTitle').textContent = project.project + '｜變更紀錄';
+    $('#logSearch').value = '';
+    renderLogs();
+  }
+}
+function navigateTo(hash) {
+  if (location.hash !== hash) {
+    history.pushState(null, '', hash);
+    window.scrollTo(0, 0);
+  }
+  renderRoute();
+}
+function showList() { navigateTo('#/projects'); }
+function showDetail() {
+  if (!active()) return showList();
+  navigateTo('#/project/' + encodeURIComponent(activeId));
+}
+function showLogs() {
+  if (!active()) return showList();
+  navigateTo('#/project/' + encodeURIComponent(activeId) + '/logs');
+}
+window.addEventListener('popstate', renderRoute);
+window.addEventListener('hashchange', renderRoute);
 function record(p,action,item,details){if(!Array.isArray(p.logs))p.logs=[];p.logs.push({id:id(),time:Date.now(),action,item,details})}
-function showLogs(){const p=active();if(!p)return;$('#listView').hidden=true;$('#detailView').hidden=true;$('#logView').hidden=false;$('#logTitle').textContent=p.project+'｜變更紀錄';$('#logSearch').value='';renderLogs()}
 function renderLogs(){const logs=active()?.logs||[],q=$('#logSearch').value.trim().toLocaleLowerCase();const shown=[...logs].sort((a,b)=>b.time-a.time).filter(x=>!q||`${x.action} ${x.item} ${x.details}`.toLocaleLowerCase().includes(q));$('#logList').innerHTML=shown.length?shown.map(x=>`<div class="listRow" style="align-items:flex-start"><span class="dot" style="background:${x.action==='新增'?'#579070':x.action==='刪除'?'#cf7771':'#6c96c9'};margin-top:5px"></span><div class="todoText"><div style="font-weight:600">${esc(x.item)} <span style="font-size:11px;color:#718078;font-weight:500">${esc(x.action)}</span></div><div class="sub" style="line-height:1.6">${esc(x.details)}</div></div><time style="white-space:nowrap;font-size:11px;color:#849087">${new Date(x.time).toLocaleString('zh-TW',{year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'})}</time></div>`).join(''):'<div class="empty">沒有符合條件的變更紀錄</div>'}
 function renderProjects(){const box=$('#projectGrid'),query=($('#projectSearch')?.value||'').trim().toLocaleLowerCase(),complete=p=>(p.tasks||[]).length>0&&(p.tasks||[]).every(t=>t.done||t.status==='done'),completed=projects.filter(complete).length,activeCount=projects.length-completed;$('#allCount').textContent=projects.length;$('#activeCount').textContent=activeCount;$('#completedCount').textContent=completed;document.querySelectorAll('[data-project-filter]').forEach(b=>b.classList.toggle('active',b.dataset.projectFilter===projectFilter));if(!projects.length){box.innerHTML='<div class="card empty" style="grid-column:1/-1">還沒有專案，建立一個新專案或從範例開始。</div>';return}const visible=projects.filter(p=>{const isDone=complete(p),matchesFilter=projectFilter==='all'||(projectFilter==='completed'?isDone:!isDone),matchesQuery=!query||String(p.project||'').toLocaleLowerCase().includes(query);return matchesFilter&&matchesQuery});if(!visible.length){box.innerHTML='<div class="card empty" style="grid-column:1/-1">沒有符合條件的專案，試試其他搜尋字詞或篩選。</div>';return}box.innerHTML=visible.map(p=>{const tasks=p.tasks||[],done=tasks.filter(t=>t.done||t.status==='done').length,progress=tasks.length?done/tasks.length*100:0,isDone=tasks.length>0&&done===tasks.length,effort=Number(p.estimateHours)||tasks.reduce((n,t)=>n+(Number(t.estimateHours)||0),0);return `<article class="card projectCard" data-project="${p.id}"><div class="projectTitleRow"><h2>${esc(p.project)}</h2><div class="projectMenuWrap"><button type="button" class="btn projectMenuBtn" data-menu="${p.id}" aria-label="專案選單" aria-expanded="false"><span class="srOnly">專案選單</span></button><div class="projectMenu" data-project-menu="${p.id}" hidden><button type="button" data-copy="${p.id}">複製專案</button><button type="button" data-delete-project="${p.id}">刪除專案</button></div></div></div><div class="projectState ${isDone?'done':'active'}">${isDone?'已完成':'進行中'}${p.templateKey?` · ${templateLabels[p.templateKey]||'專案範例'}`:''}</div><div class="dates">${fmt(p.start)} – ${fmt(p.end)}</div>${p.primaryPm||p.primaryEngineer?`<div class="projectContacts">${p.primaryPm?`PM：${esc(p.primaryPm)}`:''}${p.primaryPm&&p.primaryEngineer?'　':''}${p.primaryEngineer?`工程師：${esc(p.primaryEngineer)}`:''}</div>`:''}<div class="miniTrack"><i style="width:${progress}%"></i></div><div class="projectMeta"><span>${tasks.length} 個項目</span><span>${done}/${tasks.length} 完成</span>${effort?`<span>${effort.toLocaleString('zh-TW')} h</span>`:''}</div></article>`}).join('');box.querySelectorAll('[data-menu]').forEach(button=>button.addEventListener('click',e=>{e.stopPropagation();const menu=box.querySelector(`[data-project-menu="${button.dataset.menu}"]`),open=menu.hidden;box.querySelectorAll('.projectMenu').forEach(m=>m.hidden=true);box.querySelectorAll('[data-menu]').forEach(b=>b.setAttribute('aria-expanded','false'));menu.hidden=!open;button.setAttribute('aria-expanded',String(open))}));box.querySelectorAll('[data-copy]').forEach(button=>button.addEventListener('click',e=>{e.stopPropagation();copyProject(button.dataset.copy)}));box.querySelectorAll('[data-delete-project]').forEach(button=>button.addEventListener('click',e=>{e.stopPropagation();deleteProject(button.dataset.deleteProject)}));box.querySelectorAll('[data-project]').forEach(card=>card.addEventListener('click',e=>{if(e.target.closest('.projectMenuWrap'))return;activeId=card.dataset.project;persist();showDetail()}))}function copyProject(sourceId){const source=projects.find(p=>p.id===sourceId);if(!source)return;const taskIds=new Map((source.tasks||[]).map(t=>[t.id,id()]));const tasks=(source.tasks||[]).map(t=>({...JSON.parse(JSON.stringify(t)),id:taskIds.get(t.id),done:false,status:'active',dependsOn:(t.dependsOn||[]).map(dep=>taskIds.get(dep)).filter(Boolean)}));const copy={...JSON.parse(JSON.stringify(source)),id:id(),project:`${source.project}（複本）`,tasks,todos:(source.todos||[]).map(t=>({...t,id:id(),status:'todo'})),logs:[]};projects.push(copy);persist();renderProjects();toast('已建立專案複本')}
 function deleteProject(projectId){const project=projects.find(p=>p.id===projectId);if(!project)return;if(!confirm(`確定要刪除專案「${project.project}」嗎？此操作會一併刪除其中的任務、代辦與變更紀錄，且無法復原。`))return;projects=projects.filter(p=>p.id!==projectId);if(activeId===projectId)activeId=projects[0]?.id||null;persist();renderProjects();toast('專案已刪除')}
@@ -455,7 +507,7 @@ ganttWrap.addEventListener('pointerdown',e=>{if(e.pointerType==='touch'||e.butto
 ganttWrap.addEventListener('pointermove',e=>{if(!panState||e.pointerId!==panState.pointerId)return;ganttWrap.scrollLeft=panState.left-(e.clientX-panState.x)});
 const stopPan=e=>{if(!panState||e.pointerId!==panState.pointerId)return;panState=null;ganttWrap.classList.remove('isPanning')};
 ganttWrap.addEventListener('pointerup',stopPan);ganttWrap.addEventListener('pointercancel',stopPan);ganttWrap.addEventListener('lostpointercapture',stopPan);
-document.querySelectorAll('[data-project-filter]').forEach(b=>b.addEventListener('click',()=>{projectFilter=b.dataset.projectFilter;renderProjects()}));$('#projectSearch').addEventListener('input',renderProjects);$('#projectTemplate').addEventListener('change',()=>updateTemplatePreview(true));$('#projectStartNew').addEventListener('change',()=>{if($('#projectTemplate').value)updateTemplatePreview(false)});$('#topToday').textContent=today.toLocaleDateString('zh-TW',{year:'numeric',month:'long',day:'numeric'});document.addEventListener('click',e=>{const b=e.target.closest('[data-action]');if(!b)return;switch(b.dataset.action){case'new-project':openProject();break;case'new-task':openItem();break;case'back':showList();break;case'logs':showLogs();break;case'log-back':$('#logView').hidden=true;showDetail();break;case'export-backup':exportBackup();break;case'share-backup':shareBackup(b);break;case'import-backup':$('#backupFile').click();break;case'close-modal':closeModal();break;case'today':scrollToToday();break}});
+document.querySelectorAll('[data-project-filter]').forEach(b=>b.addEventListener('click',()=>{projectFilter=b.dataset.projectFilter;renderProjects()}));$('#projectSearch').addEventListener('input',renderProjects);$('#projectTemplate').addEventListener('change',()=>updateTemplatePreview(true));$('#projectStartNew').addEventListener('change',()=>{if($('#projectTemplate').value)updateTemplatePreview(false)});$('#topToday').textContent=today.toLocaleDateString('zh-TW',{year:'numeric',month:'long',day:'numeric'});document.addEventListener('click',e=>{const b=e.target.closest('[data-action]');if(!b)return;switch(b.dataset.action){case'new-project':openProject();break;case'new-task':openItem();break;case'back':showList();break;case'logs':showLogs();break;case'log-back':showDetail();break;case'export-backup':exportBackup();break;case'share-backup':shareBackup(b);break;case'import-backup':$('#backupFile').click();break;case'close-modal':closeModal();break;case'today':scrollToToday();break}});
 $('#projectForm').addEventListener('submit',saveProjectForm);$('#itemForm').addEventListener('submit',saveForm);$('#modalBack').addEventListener('click',e=>{if(e.target===$('#modalBack'))closeModal()});$('#projectModalBack').addEventListener('click',e=>{if(e.target===$('#projectModalBack'))closeModal()});$('#backupFile').addEventListener('change',importBackup);$('#todoForm').addEventListener('submit',e=>{e.preventDefault();const input=$('#todoInput'),text=input.value.trim();if(!text)return;const p=active();p.todos.push({id:id(),text,status:'todo'});record(p,'新增代辦',text,'新增代辦事項');input.value='';persist();renderTodos();input.focus()});$('#logSearch').addEventListener('input',renderLogs);
 $('#projectName').addEventListener('change',()=>{const p=active(),before=p.project;p.project=$('#projectName').value.trim()||'未命名專案';if(before!==p.project)record(p,'修改專案名稱','專案資料',`${before} → ${p.project}`);persist()});const dateFields=['projectStart','projectEnd'];function updateDateSave(){const p=active();$('#saveProjectDates').disabled=$('#projectStart').value===p.start&&$('#projectEnd').value===p.end}for (const field of dateFields) {
   const input = document.getElementById(field);
@@ -463,7 +515,7 @@ $('#projectName').addEventListener('change',()=>{const p=active(),before=p.proje
   input.addEventListener('change', updateDateSave);
 }
 $('#saveProjectDates').addEventListener('click',()=>{const p=active(),s=$('#projectStart').value,e=$('#projectEnd').value;if(!s||!e){toast('請選擇完整的專案日期');return}if(e<s){toast('結束日期不能早於起始日期');return}const oldStart=p.start,oldEnd=p.end;if(oldStart!==s||oldEnd!==e){p.start=s;p.end=e;record(p,'修改專案日期','專案資料',`${oldStart} – ${oldEnd} → ${s} – ${e}`);persist();renderDetail();toast('專案日期已儲存')}});$('#weekendToggle').addEventListener('click',()=>{active().weekends=!active().weekends;persist();renderDetail()});
-load();projects.forEach(p=>{if(!Array.isArray(p.logs))p.logs=[]});ensureHardwareSample();showList();
+load();projects.forEach(p=>{if(!Array.isArray(p.logs))p.logs=[]});ensureHardwareSample();if (!location.hash) history.replaceState(null, '', '#/projects');renderRoute();
 })();
 </script><script>
 // Keep touch scrolling and task dragging while suppressing multi-touch zoom.
