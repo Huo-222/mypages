@@ -1,15 +1,7 @@
 <!doctype html>
 <html lang="zh-Hant">
 <head>
-<script>
-  if (/^https?:$/.test(location.protocol) && location.pathname.endsWith('/index.html')) {
-    const directory = new URL('./', location.href);
-    directory.search = location.search;
-    directory.hash = location.hash;
-    history.replaceState(history.state, '', directory);
-  }
-</script>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>我的專案｜ProjectM</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>我的專案｜ProjectM</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;600;700&display=swap');
 :root{--ink:#1f2b27;--muted:#718078;--line:#e7ece8;--green:#285b49;--bg:#f6f8f5;--paper:#fff;--amber:#e8a749;--blue:#6c96c9;--rose:#cf7771}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px 'DM Sans','Noto Sans TC',sans-serif}.app{max-width:1380px;margin:auto;padding:26px 32px 48px}.top{height:48px;display:flex;align-items:center;justify-content:space-between;margin-bottom:26px}.brand{display:flex;align-items:center;gap:10px;font-weight:700}.mark{width:35px;height:35px;border-radius:11px;background:var(--green);color:white;display:grid;place-items:center;font-size:19px}.topRight{display:flex;align-items:center;gap:12px}.avatar{width:33px;height:33px;border-radius:50%;background:#f1d7b4;color:#654b34;display:grid;place-items:center;font-weight:700}.eyebrow{color:#89958e;font-size:10px;letter-spacing:.13em;font-weight:700}.heading{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:23px}.heading h1{font-size:28px;letter-spacing:-.04em;margin:5px 0}.detailHeading{align-items:flex-start}.detailHeading>.btn{margin-top:0}.heading p{color:var(--muted);margin:0}.btn{border:1px solid var(--line);background:white;color:var(--ink);border-radius:9px;padding:10px 14px;font:600 13px inherit;cursor:pointer;transition:.15s}.btn:hover{border-color:#9aaca0;transform:translateY(-1px)}.btn.primary{background:var(--green);color:white;border-color:var(--green)}.btn.small{padding:7px 10px;font-size:12px}.btn.icon{font-size:18px;padding:5px 10px}.card,.panel,.listPanel{background:white;border:1px solid var(--line);border-radius:14px}.panel{overflow:hidden;margin-bottom:17px}.panelHead{padding:16px 19px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.panelTitle{font-weight:700;font-size:15px}.sub{font-size:11px;color:#89958e;margin-top:4px}.toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.select,.input{border:1px solid var(--line);border-radius:8px;background:#fff;padding:8px 10px;color:#526058;font:12px inherit}.input:focus,.select:focus{outline:2px solid #d3e5d8}.projectGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:14px}.projectCard{padding:18px;cursor:pointer;transition:.16s}.projectCard:hover{transform:translateY(-2px);border-color:#b8c9bc;box-shadow:0 9px 22px #293c3010}.projectCard h2{font-size:17px;margin:0 0 7px}.projectCard .dates{color:var(--muted);font-size:12px}.projectMeta{display:flex;justify-content:space-between;margin-top:17px;color:#748078;font-size:11px}.projectCard .miniTrack{height:5px;background:#edf1ed;border-radius:8px;margin-top:11px;overflow:hidden}.miniTrack i{height:100%;display:block;background:#659377;border-radius:8px}.empty{padding:38px 20px;text-align:center;color:#8b968f}.stats{display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px;margin-bottom:17px}.statCard{padding:16px 18px}.statCard label{display:block;color:var(--muted);font-size:10px;font-weight:700;letter-spacing:.08em;margin-bottom:7px}.statValue{font-size:21px;font-weight:700}.projectNameInput{font:700 20px 'DM Sans','Noto Sans TC',sans-serif;min-height:44px;padding:4px 2px;border:0;outline:0;width:100%;color:var(--ink)}.projectNameInput:focus{box-shadow:0 1px #96b4a0}.datesInput{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:6px}.datesInput .input{width:100%;min-width:0;padding:8px 6px}.dateHeader{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}.dateHeader label{margin:0}.dateHeader .btn{padding:5px 9px}.toggle{display:flex;align-items:center;gap:8px;color:#5e6c63;font-size:11px}.switch{width:33px;height:19px;border:0;border-radius:11px;padding:2px;background:#cbd4ce;cursor:pointer}.switch:after{content:'';display:block;background:white;width:15px;height:15px;border-radius:50%;transition:.15s}.switch.on{background:var(--green)}.switch.on:after{transform:translateX(14px)}.ganttWrap{overflow:auto}.gantt{min-width:820px}.gHead,.gRow{display:grid;grid-template-columns:var(--task-col-width,280px) minmax(540px,1fr)}.gHead{height:44px;background:#fcfdfb;border-bottom:1px solid var(--line)}.labelHead{padding:14px 17px;color:#8a968f;font-size:10px;font-weight:700;letter-spacing:.08em}.timeline{position:relative;display:grid;grid-template-columns:repeat(var(--days),minmax(38px,1fr));align-items:stretch;width:max(100%,calc(var(--days)*38px))}.monthLabels{position:absolute;top:3px;left:0;right:0;height:13px}.monthLabel{position:absolute;text-align:center;font-size:9px;color:#849087;white-space:nowrap;overflow:hidden}.dayLabels{position:absolute;left:0;right:0;bottom:4px;display:grid;grid-template-columns:repeat(var(--days),minmax(38px,1fr))}.dayLabels span{text-align:center;color:#9ba69f;font-size:9px}.gRow{min-height:56px;border-bottom:1px solid #f0f3f0}.taskInfo{padding:8px 12px 8px 16px;display:flex;gap:8px;align-items:center;min-width:0}.taskDone{accent-color:#7d8b82;cursor:pointer;flex:none}.dot{width:8px;height:8px;border-radius:50%;flex:none}.taskText{min-width:0;flex:1;cursor:pointer}.taskName{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.projectContacts{font-size:11px;color:#68758e;margin-top:8px}.taskDates{font-size:10px;color:#929e96;margin-top:3px}.taskPeople{font-size:10px;color:#65786c;margin-top:4px;white-space:normal;line-height:1.35}.taskPeople{font-size:10px;color:#65786c;margin-top:4px;white-space:normal;line-height:1.35}.rowActions{display:flex;gap:4px;opacity:0}.gRow:hover .rowActions{opacity:1}.rowActions button{border:0;background:none;color:#87938c;cursor:pointer;font-size:15px}.timelineCell{position:relative;width:max(100%,calc(var(--days)*38px));background-image:linear-gradient(to right,transparent calc(100% - 1px),#eef2ee 1px);background-size:calc(100% / var(--days)) 100%}.bar{position:absolute;top:16px;height:23px;border-radius:6px;cursor:grab;user-select:none;min-width:14px;background:var(--bar)}.bar:active{cursor:grabbing}.barLabel{position:absolute;left:9px;top:4px;color:#173e2d;font-size:10px;font-weight:700;white-space:nowrap;pointer-events:none}.bar.completed{background:#aeb7b0!important}.bar.completed .barLabel{color:#4d5951}.bar.milestone{width:16px!important;height:16px;top:19px;transform:rotate(45deg);border-radius:3px;background:var(--amber)}.bar.milestone .barLabel{transform:rotate(-45deg);left:12px;top:-7px;color:#735118}.barHandle{position:absolute;right:0;top:0;width:8px;height:100%;cursor:ew-resize}.todayLine{position:absolute;top:0;bottom:0;width:2px;background:#d77a68;pointer-events:none;z-index:2}.todayLine:before{content:'今天';position:absolute;top:0;left:-13px;background:#fff;color:#c56858;font-size:9px;padding:2px}.hint{padding:10px 17px;color:#8c9790;font-size:10px;background:#fbfcfb}.bottomGrid{display:grid;grid-template-columns:1.2fr 1fr;gap:16px}.listPanel{overflow:hidden}.listHead{padding:15px 18px;border-bottom:1px solid var(--line)}.addTodo{display:flex;gap:8px;padding:11px 17px;border-bottom:1px solid var(--line)}#todoForm.addTodo{margin:12px 22px;padding:0 0 12px;border:0;border-bottom:1px solid var(--line);border-radius:0;background:transparent}#todoList>.empty{margin:0 22px 14px}.addTodo .input{flex:1;font-size:13px}.listRow{display:flex;gap:9px;align-items:center;padding:11px 17px;border-bottom:1px solid #f0f3f0}.listRow:last-child{border-bottom:0}.todoText{flex:1;min-width:0;overflow-wrap:anywhere}.todoDone{text-decoration:line-through;color:#98a29b}.milestoneDate{margin-left:auto;min-width:52px;text-align:right;color:var(--muted);font-family:inherit;font-size:12px;font-weight:500;line-height:1.2;white-space:nowrap}.back{border:0;background:none;color:#526058;font:600 12px inherit;cursor:pointer;padding:8px 0}.back:hover{color:var(--green)}.modalBack{position:fixed;inset:0;background:#17251e66;display:none;place-items:center;z-index:10;padding:20px}.modalBack.show{display:grid}.modal{width:min(500px,100%);background:white;border-radius:15px;padding:22px;box-shadow:0 18px 55px #12251d30}.modal h2{font-size:19px;margin:0 0 16px}.formGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{display:flex;flex-direction:column;gap:6px}.field.full{grid-column:1/-1}.field label{font-size:11px;color:#68766e;font-weight:700}.field input,.field select{padding:10px;border:1px solid var(--line);border-radius:8px;font:13px inherit}.check{display:flex;align-items:center;gap:7px;color:#68766e;font-size:12px}.modalActions{display:flex;justify-content:flex-end;gap:8px;margin-top:18px}.toast{position:fixed;bottom:20px;left:50%;transform:translate(-50%,16px);opacity:0;background:#243c30;color:white;padding:10px 15px;border-radius:9px;transition:.2s;pointer-events:none}.toast.show{opacity:1;transform:translate(-50%,0)}
@@ -21,19 +13,193 @@
 body{background:radial-gradient(ellipse at 90% 0%,#e9e9ff80,transparent 36%),#f5f6fb;color:var(--ink);font-family:Inter,'DM Sans','Noto Sans TC',sans-serif}.app{max-width:1480px;padding:20px clamp(14px,4vw,56px) 54px}.top{height:68px;margin:0 0 30px;padding:0 4px 16px;border-bottom:1px solid #e5e8f1}.brand{gap:12px;font-size:18px;letter-spacing:-.03em}.mark{width:42px;height:42px;border-radius:14px;background:linear-gradient(145deg,#5b5af7,#8f70ff);box-shadow:0 8px 18px #665cf733;color:white;display:grid;place-items:center}.mark svg{width:25px;height:25px}.brandVersion{font-size:9px;letter-spacing:.15em;font-weight:700;color:#909ab0;border-left:1px solid #dfe3ed;padding-left:11px;margin-left:1px}.topTools{display:flex;align-items:center;gap:10px}.todayPill{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid #e5e8f1;border-radius:999px;padding:8px 12px;color:#58647d;font-size:11px;font-weight:700;box-shadow:0 4px 12px #20294508}.liveDot{width:7px;height:7px;border-radius:50%;background:#37b991;box-shadow:0 0 0 4px #37b99118}.heading{margin-bottom:21px}.dashboardHero{position:relative;overflow:hidden;align-items:center;min-height:200px;padding:30px 34px;border:0;border-radius:25px;background:linear-gradient(115deg,#4947d8 0%,#6656e8 54%,#9569ef 100%);box-shadow:0 18px 40px #5549d52e;color:#fff}.dashboardHero:after{content:'';position:absolute;width:300px;height:300px;border-radius:50%;right:20%;top:-190px;border:1px solid #ffffff28;box-shadow:0 0 0 30px #ffffff0b,0 0 0 60px #ffffff0a,0 0 0 90px #ffffff08;pointer-events:none}.dashboardHero>div{position:relative;z-index:1}.dashboardHero .eyebrow{color:#d8d9ff}.dashboardHero h1{color:white;font-size:34px;letter-spacing:-.05em;margin:9px 0}.dashboardHero p{color:#e6e5ff;font-size:13px}.heroActions{justify-content:flex-end}.heroActions .btn{background:#ffffff16;color:white;border-color:#ffffff56;backdrop-filter:blur(8px)}.heroActions .btn:hover{background:#ffffff27;border-color:#fff}.heroActions .btn.primary{background:#fff;color:#5147d6;border-color:#fff;box-shadow:0 6px 16px #32269a38}.plusMark{font-size:17px;margin-right:4px}.projectControls{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:24px 0 15px}.filterTabs{display:flex;gap:7px;align-items:center;flex-wrap:wrap}.filterTab{display:flex;align-items:center;gap:9px;background:transparent;border:1px solid transparent;border-radius:11px;padding:8px 12px;color:#73809a;font:600 12px inherit;cursor:pointer;transition:.18s}.filterTab span{display:inline-grid;place-items:center;min-width:21px;height:21px;padding:0 6px;border-radius:7px;background:#e9ecf4;color:#6e7890;font-size:10px}.filterTab:hover{background:#fff;color:#414d69}.filterTab.active{background:#fff;border-color:#e6e9f2;color:#4338ca;box-shadow:0 4px 14px #2934530d}.filterTab.active span{background:#eeedff;color:#5146d8}.projectSearch{display:flex;align-items:center;gap:8px;width:min(280px,100%);padding:0 12px;border:1px solid #e2e6ef;border-radius:11px;background:#fff;color:#929bb0;box-shadow:0 4px 14px #29345308}.projectSearch>span{font-size:20px;line-height:1}.projectSearch input{width:100%;min-width:0;padding:10px 0;border:0;outline:0;background:transparent;color:var(--ink);font:12px inherit}.projectSearch:focus-within{border-color:#8e88ed;box-shadow:0 0 0 3px #7065ed1c}.projectGrid{grid-template-columns:repeat(auto-fill,minmax(min(100%,290px),1fr));gap:16px}.projectCard{position:relative;overflow:visible;padding:23px 21px 19px;border:1px solid #e8eaf2;border-radius:18px;box-shadow:var(--shadow);background:linear-gradient(180deg,#fff,#fdfdff);transition:transform .2s,box-shadow .2s,border-color .2s}.projectCard:before{content:'';position:absolute;top:-1px;left:20px;right:20px;height:4px;border-radius:0 0 6px 6px;background:linear-gradient(90deg,#6759ea,#9a72f4)}.projectCard:nth-child(4n+2):before{background:linear-gradient(90deg,#27a98f,#6bd0b1)}.projectCard:nth-child(4n+3):before{background:linear-gradient(90deg,#ef9d38,#f5c36c)}.projectCard:nth-child(4n):before{background:linear-gradient(90deg,#e56686,#ff9aaa)}.projectCard:hover{transform:translateY(-4px);border-color:#d9d9f5;box-shadow:0 16px 34px #34366a18}.projectTitleRow{align-items:center;margin:3px 0 5px}.projectCard h2{font-size:16px;line-height:1.45;letter-spacing:-.025em}.projectState{display:inline-flex;align-items:center;gap:6px;margin:7px 0 2px;color:#7a8499;font-size:10px;font-weight:700}.projectState:before{content:'';width:6px;height:6px;border-radius:50%;background:#a0a9ba}.projectState.active:before{background:#34b58f;box-shadow:0 0 0 3px #34b58f20}.projectState.done:before{background:#8a70eb;box-shadow:0 0 0 3px #8a70eb20}.projectCard .dates{margin-top:7px;color:#7d89a1}.projectCard .miniTrack{height:6px;margin-top:15px;background:#edf0f7}.miniTrack i{background:linear-gradient(90deg,#635bdf,#9c73f3);transition:width .35s}.projectMeta{margin-top:12px;color:#7f899e}.projectMenuBtn{border:1px solid transparent;background:#f3f4fa;color:#66728d;border-radius:9px}.projectMenuBtn:hover{background:#eeedff;color:#4f46d5}.projectMenu{border-color:#e7e9f1;border-radius:12px;box-shadow:0 12px 28px #1d28421c}.projectMenu button{padding:9px 11px;border-radius:8px;font-size:12px}.empty{border:1px dashed #d6dbea;border-radius:18px;background:#fff;color:#7f8aa0}.stats{gap:14px}.statCard{border:1px solid #e7eaf2;border-radius:17px;box-shadow:var(--shadow);padding:18px 20px}.statCard label{color:#7d88a0}.statValue{color:#202c4a}.projectNameInput{color:#202c4a}.panel,.listPanel{border-color:#e7eaf2;border-radius:18px;box-shadow:var(--shadow)}.panelHead{padding:18px 21px;border-color:#edf0f6;background:linear-gradient(180deg,#fff,#fdfdff)}.panelTitle{color:#202c4a}.sub{color:#8590a5}.btn{border-color:#e3e7f0;border-radius:10px;color:#4f5c76;background:#fff;box-shadow:0 2px 5px #18234008;transition:transform .18s,box-shadow .18s,border-color .18s,background .18s}.btn:hover{border-color:#b9b6ef;box-shadow:0 6px 14px #5148d315;transform:translateY(-2px)}.btn.primary{background:linear-gradient(110deg,#544ade,#7963ec);border-color:#6558e3;box-shadow:0 5px 14px #5a4ad932}.btn.primary:hover{background:linear-gradient(110deg,#4940cd,#6e58df)}.input,.select{border-color:#e1e6ef;border-radius:9px;color:#4c5972}.ganttWrap{border-top:0}.gHead{background:#f8f9fd}.labelHead{color:#7c879c}.gRow{border-color:#edf0f5}.taskInfo{background:#fff}.bar{box-shadow:0 3px 8px #303e5b1c}.bar.completed{box-shadow:none}.todayLine{background:#e65e77;box-shadow:0 0 0 1px #e65e7726}.todayLine:before{color:#cb4763;border-radius:5px}.hint{background:#fafbfe;color:#7e8aa2}.listHead{border-color:#edf0f5}.listRow{border-color:#edf0f5}.modalBack{backdrop-filter:blur(5px);background:#20274773}.modal{border:1px solid #e9eaf4;border-radius:22px;box-shadow:0 24px 80px #111a3733}.modal h2{color:#202c4a}.templateNote{border-radius:10px;padding:10px 12px;background:#f3f2ff;color:#625aab;font-size:11px;line-height:1.7}.field label{color:#68758e}.toast{box-shadow:0 8px 28px #17213a36}
 @media(max-width:800px){.app{padding:15px 14px 36px}.dashboardHero{padding:25px 22px;min-height:180px}.dashboardHero h1{font-size:29px}.top{margin-bottom:22px}.projectControls{align-items:stretch;flex-direction:column}.projectSearch{width:100%}.heroActions{justify-content:flex-start}}
 @media(max-width:520px){.top{height:auto;min-height:60px;margin-bottom:18px}.brand{gap:9px;font-size:16px}.brandVersion{font-size:8px;padding-left:8px}.mark{width:38px;height:38px}.todayPill{font-size:10px;padding:7px 9px}.dashboardHero{align-items:flex-start;flex-direction:column;gap:20px;padding:24px 19px;border-radius:20px}.dashboardHero h1{font-size:26px}.dashboardHero p{line-height:1.6;max-width:27ch}.heroActions{width:100%;display:grid;grid-template-columns:1fr 1fr}.heroActions .btn.primary{grid-column:1/-1}.filterTabs{gap:2px}.filterTab{padding:7px 8px;font-size:11px}.filterTab span{min-width:18px;height:18px}.projectGrid{grid-template-columns:1fr}.projectCard{padding:21px 17px 17px}.stats{grid-template-columns:1fr}.statCard:first-child{grid-column:auto}.formGrid{grid-template-columns:1fr 1fr}.modal{padding:19px}.modalActions .btn{flex:1}.heading h1{font-size:24px}}
-</style><style>.bar.milestone .barLabel{display:none!important}</style></head>
+</style><style>.bar.milestone .barLabel{display:none!important}</style>
+<style>
+.dateCaption { display: none; }
+.datesInput > label { min-width: 0; margin: 0; }
+.datesInput input { font-weight: 400; letter-spacing: normal; }
+
+/* Portrait phones and short landscape viewports share the same touch controls. */
+@media (max-width: 600px), (max-height: 550px) and (pointer: coarse) {
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  html:has(.modalBack.show) { overflow: hidden; }
+  .app {
+    padding: max(14px, env(safe-area-inset-top)) max(14px, env(safe-area-inset-right))
+      max(28px, env(safe-area-inset-bottom)) max(14px, env(safe-area-inset-left));
+  }
+  .top { height: auto; flex-wrap: wrap; gap: 8px; }
+  .heading > div, .panel, .listPanel, .projectCard, .statCard, .formGrid > *, .field {
+    min-width: 0;
+  }
+  .projectTitleRow h2, .projectContacts, #logTitle, .dependencyOption {
+    overflow-wrap: anywhere;
+  }
+  .projectMeta { flex-wrap: wrap; gap: 4px 10px; }
+  .detailHeading { flex-direction: row; flex-wrap: wrap; align-items: center; }
+  .detailHeading > .btn { align-self: center; }
+  .btn, .back, .filterTab, .projectMenu button, .check, .dependencyOption {
+    min-height: 44px;
+  }
+  .projectMenuBtn { width: 44px; }
+  .projectMenu { top: calc(100% + 4px); }
+  .projectCard:focus-within { z-index: 2; }
+  .filterTabs { gap: 4px; }
+  .projectSearch input, .field input:not([type="checkbox"]), .field select,
+  .input, .listRow select {
+    min-width: 0;
+    max-width: 100%;
+    min-height: 44px;
+    font-size: 16px;
+  }
+  .field input:not([type="checkbox"]), .field select { width: 100%; }
+  .datesInput { grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 12px; }
+  .datesInput > .dateSeparator { display: none; }
+  .datesInput .dateCaption { display: block; margin-bottom: 5px; font-size: 12px; }
+  .datesInput .input[type="date"], .field input[type="date"] {
+    display: block;
+    box-sizing: border-box;
+    min-inline-size: 0;
+    inline-size: 100%;
+    max-inline-size: 100%;
+    min-height: 44px;
+    margin: 0;
+    padding: 8px 10px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.35;
+    text-align: start;
+    letter-spacing: normal;
+    color: var(--ink);
+    background-color: #fff;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  input[type="date"]::-webkit-date-and-time-value { margin: 0; text-align: start; }
+  input[type="date"]::-webkit-datetime-edit { padding: 0; }
+  .modalBack {
+    top: var(--visible-top, 0px);
+    bottom: auto;
+    height: 100vh;
+    height: var(--visible-height, 100dvh);
+    padding: max(10px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right))
+      max(10px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+    grid-template: minmax(0, 1fr) / minmax(0, 1fr);
+  }
+  .modal {
+    min-width: 0;
+    max-height: 100%;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 18px;
+  }
+  .modalActions { flex-wrap: wrap; }
+  .dependencyOptions { grid-template-columns: minmax(0, 1fr); }
+  .dependencyOption input { flex: none; }
+  .check { padding-bottom: 0 !important; }
+  .addTodo .input { min-width: 0; }
+  #todoList .listRow { flex-wrap: wrap; }
+  #todoList [data-todo-delete] { min-height: 44px; min-width: 44px; align-items: center; justify-content: center; }
+  #logSearch { width: 100%; }
+  #logList .listRow {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 4px 9px;
+  }
+  #logList time { grid-column: 2; }
+  .toast {
+    z-index: 12;
+    width: max-content;
+    max-width: calc(100% - 32px);
+    bottom: max(16px, env(safe-area-inset-bottom));
+  }
+}
+@media (max-width: 600px) {
+  .heroActions { width: 100%; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .heroActions .btn.primary { grid-column: auto; }
+  .dashboardHero { align-items: stretch; flex-direction: column; }
+  .datesInput, .formGrid { grid-template-columns: minmax(0, 1fr); }
+  .stats, .bottomGrid { grid-template-columns: minmax(0, 1fr); }
+  .formGrid { gap: 14px; }
+  .modalActions > button { flex: 1; }
+}
+@media (max-height: 550px) and (pointer: coarse) and (min-width: 601px) {
+  .stats { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .statCard:first-child { grid-column: 1 / -1; }
+  .datesInput { grid-template-columns: minmax(0, 1fr); }
+  .formGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+</style><style>
+#backupStatus:not([hidden]) { margin: 0 0 16px; padding: 12px 16px; border-radius: 10px; background: #eeedff; color: #423b82; line-height: 1.6; }
+</style><style>
+/* Use native, two-dimensional scrolling outside draggable bars on touch screens. */
+@media (pointer: coarse) {
+  .ganttWrap, .ganttWrap .timeline, .ganttWrap .timelineCell { touch-action: auto; }
+  .ganttWrap .bar { touch-action: pan-y; -webkit-touch-callout: none; }
+  .ganttWrap .bar::before { content: ""; position: absolute; inset: -8px 0; }
+  .ganttWrap .milestone::before { inset: -8px; }
+  .ganttWrap .barHandle { width: 13px; top: -7px; height: calc(100% + 14px); }
+  .barHandle::after { content: ""; position: absolute; right: 4px; top: 50%; height: 12px; margin-top: -6px; border-right: 2px solid #17243b65; }
+}
+@media (max-width: 600px), (max-height: 530px) and (pointer: coarse) {
+  .ganttPanel .panelHead { align-items: flex-start; padding: 14px 16px; }
+  .ganttPanel .toolbar { flex-wrap: wrap; gap: 6px 12px; align-items: center; }
+  .ganttPanel .toolbar .btn, .ganttPanel .toggle { min-height: 44px; }
+  .ganttPanel .toggle { font-size: 12px; }
+  .ganttWrap { width: 100%; min-width: 0; max-height: min(604px, 68dvh); scrollbar-gutter: auto; }
+  .ganttWrap .gantt {
+    --task-col-width: 166px;
+    min-width: 100%;
+    width: calc(var(--task-col-width) + var(--days) * 38px);
+  }
+  .ganttWrap .gHead, .ganttWrap .gRow {
+    width: 100%; grid-template-columns: var(--task-col-width) minmax(0,1fr);
+  }
+  .ganttWrap .timeline, .ganttWrap .timelineCell { width: 100%; }
+  .ganttWrap .taskInfo {
+    display: grid; grid-template-columns: 22px minmax(0,1fr) 26px;
+    align-items: center; padding: 4px; gap: 4px;
+  }
+  .ganttWrap .taskDone { width: 19px; height: 19px; justify-self: center; margin: 0; }
+  .ganttWrap .taskInfo > .dot { display: none; }
+  .ganttWrap .taskName {
+    white-space: normal; overflow-wrap: anywhere; font-size: 13px; line-height: 1.35;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+  }
+  .ganttWrap .taskDates, .ganttWrap .taskPeople { font-size: 11px; line-height: 1.35; overflow-wrap: anywhere; }
+  .ganttWrap .rowActions { display: grid; gap: 2px; opacity: 1; }
+  .ganttWrap .rowActions button { min-height: 28px; width: 26px; padding: 0; font-size: 16px; }
+  .ganttWrap .monthLabel, .ganttWrap .dayLabels span { font-size: 11px; }
+  .ganttWrap .bar:not(.milestone) { overflow: visible; }
+  .ganttWrap .barLabel { max-width: calc(100% - 22px); overflow: hidden; text-overflow: ellipsis; }
+}
+</style>
+</head>
 <body><main class="app">
 <header class="top"><div class="brand"><div class="mark" aria-hidden="true"><svg viewBox="0 0 40 40"><rect x="5" y="7" width="30" height="27" rx="8" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M13 14h14M13 20h8M13 26h10" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><circle cx="28" cy="26" r="3" fill="currentColor"/></svg></div><span>我的專案</span><span class="brandVersion">PROJECTM</span></div><div class="topTools"><span class="todayPill"><span class="liveDot"></span><span id="topToday"></span></span></div></header>
-<section id="listView"><div class="heading dashboardHero"><div><div class="eyebrow">WORKSPACE / 2026</div><h1>專案總覽</h1><p>把每個想法整理成清楚的計畫，一眼掌握進度與下一步。</p></div><div class="toolbar heroActions"><button class="btn" data-action="export-backup">匯出備份</button><button class="btn" data-action="import-backup">匯入備份</button><button class="btn primary" data-action="new-project"><span class="plusMark">＋</span> 新增專案</button></div></div><div class="projectControls"><div class="filterTabs" role="tablist" aria-label="專案篩選"><button class="filterTab active" type="button" data-project-filter="all">全部專案 <span id="allCount">0</span></button><button class="filterTab" type="button" data-project-filter="active">進行中 <span id="activeCount">0</span></button><button class="filterTab" type="button" data-project-filter="completed">已完成 <span id="completedCount">0</span></button></div><div class="projectSearch"><span aria-hidden="true">⌕</span><input id="projectSearch" type="search" placeholder="搜尋專案…" aria-label="搜尋專案"></div></div><div id="projectGrid" class="projectGrid"></div><input id="backupFile" type="file" accept=".json,application/json" hidden></section>
+<section id="listView"><div class="heading dashboardHero"><div><div class="eyebrow">WORKSPACE / 2026</div><h1>專案總覽</h1><p>把每個想法整理成清楚的計畫，一眼掌握進度與下一步。</p></div><div class="toolbar heroActions"><button class="btn" data-action="export-backup">匯出備份</button><button class="btn" data-action="share-backup" aria-label="分享全部專案備份">分享備份</button><button class="btn" data-action="import-backup">匯入備份</button><button class="btn primary" data-action="new-project"><span class="plusMark">＋</span> 新增專案</button></div></div><p id="backupStatus" hidden role="status" aria-live="polite"></p><div class="projectControls"><div class="filterTabs" role="tablist" aria-label="專案篩選"><button class="filterTab active" type="button" data-project-filter="all">全部專案 <span id="allCount">0</span></button><button class="filterTab" type="button" data-project-filter="active">進行中 <span id="activeCount">0</span></button><button class="filterTab" type="button" data-project-filter="completed">已完成 <span id="completedCount">0</span></button></div><div class="projectSearch"><span aria-hidden="true">⌕</span><input id="projectSearch" type="search" placeholder="搜尋專案…" aria-label="搜尋專案"></div></div><div id="projectGrid" class="projectGrid"></div><input id="backupFile" type="file" accept=".json,.txt,application/json,text/plain" hidden></section>
 <section id="detailView" hidden><div class="heading detailHeading"><div><button class="back" data-action="back">← 返回專案列表</button></div><button class="btn" data-action="logs">查看變更紀錄</button></div>
-<div class="stats"><div class="card statCard"><label>專案名稱</label><input id="projectName" class="projectNameInput" maxlength="80" aria-label="專案名稱"></div><div class="card statCard"><div class="dateHeader"><label>專案日期</label><button id="saveProjectDates" class="btn small" type="button" disabled>儲存</button></div><div class="datesInput"><input id="projectStart" class="input" type="date" aria-label="專案起始日期"><span>–</span><input id="projectEnd" class="input" type="date" aria-label="專案結束日期"></div><div id="projectDuration" class="sub"></div></div><div class="card statCard"><label>任務完成</label><div class="statValue"><span id="doneCount">0</span><span style="font-size:13px;color:#849189;font-weight:500"> / <span id="totalCount">0</span></span></div><div id="effortEstimate" class="sub"></div></div></div>
-<section class="panel"><div class="panelHead"><div><div class="panelTitle">專案甘特圖</div><div class="sub">拖曳任務色塊移動日期，拖曳右側控點調整工期</div></div><div class="toolbar"><label class="toggle"><button id="weekendToggle" class="switch" aria-label="納入週末"></button>甘特圖納入週末</label><button class="btn small" data-action="today">今天</button><button class="btn small primary" data-action="new-task">＋ 新增項目</button></div></div><div class="ganttWrap"><div id="gantt" class="gantt"></div></div><div class="hint">完成任務請勾選名稱旁方框；已完成任務會以灰色呈現。日期與代辦事項會自動儲存。</div></section>
+<div class="stats"><div class="card statCard"><label>專案名稱</label><input id="projectName" class="projectNameInput" maxlength="80" aria-label="專案名稱"></div><div class="card statCard"><div class="dateHeader"><label>專案日期</label><button id="saveProjectDates" class="btn small" type="button" disabled>儲存</button></div><div class="datesInput"><label><span class="dateCaption">起始日期</span><input id="projectStart" class="input" type="date" aria-label="專案起始日期"></label><span class="dateSeparator" aria-hidden="true">–</span><label><span class="dateCaption">結束日期</span><input id="projectEnd" class="input" type="date" aria-label="專案結束日期"></label></div><div id="projectDuration" class="sub"></div></div><div class="card statCard"><label>任務完成</label><div class="statValue"><span id="doneCount">0</span><span style="font-size:13px;color:#849189;font-weight:500"> / <span id="totalCount">0</span></span></div><div id="effortEstimate" class="sub"></div></div></div>
+<section class="panel ganttPanel"><div class="panelHead"><div><div class="panelTitle">專案甘特圖</div><div class="sub">滑動日期列瀏覽時程，拖曳色塊或菱形調整日期。</div></div><div class="toolbar"><label class="toggle"><button id="weekendToggle" class="switch" aria-label="納入週末"></button>甘特圖納入週末</label><button class="btn small" data-action="today">今天</button><button class="btn small primary" data-action="new-task">＋ 新增項目</button></div></div><div class="ganttWrap"><div id="gantt" class="gantt"></div></div><div class="hint">完成任務請勾選名稱旁方框；已完成任務會以灰色呈現。日期與代辦事項會自動儲存。</div></section>
 <div class="bottomGrid"><section class="listPanel"><div class="listHead"><div class="panelTitle">代辦事項</div><div class="sub">輸入事項，再選擇待辦或已完成</div></div><form id="todoForm" class="addTodo"><input id="todoInput" class="input" maxlength="120" placeholder="輸入代辦事項…" required><button class="btn small primary" type="submit">新增</button></form><div id="todoList"></div></section><section class="listPanel"><div class="listHead"><div class="panelTitle">里程碑</div><div class="sub">專案中的關鍵日期</div></div><div id="milestoneList"></div></section></div>
 </section>
 <section id="logView" hidden><div class="heading"><div><button class="back" data-action="log-back">← 返回專案</button><h1 id="logTitle">變更紀錄</h1><p>查詢這個專案的任務與項目異動。</p></div></div><section class="panel"><div class="panelHead"><div><div class="panelTitle">變更紀錄</div><div class="sub">依時間由新到舊排列</div></div><input id="logSearch" class="input" placeholder="搜尋項目或變更內容…" aria-label="搜尋變更紀錄"></div><div id="logList"></div></section></section>
 </main>
-<div id="projectModalBack" class="modalBack"><div class="modal"><h2>新增專案</h2><form id="projectForm"><div class="formGrid"><div class="field full"><label for="projectTemplate">專案範例</label><select id="projectTemplate" class="select"><option value="">空白專案</option><option value="hardware">硬體產品開發</option><option value="software-small">小型軟體產品開發</option><option value="software-medium">中型軟體產品開發</option><option value="software-large">大型軟體產品開發</option></select><div id="templateNote" class="templateNote">選擇一個流程範例，或建立空白專案。</div></div><div class="field full"><label for="projectNameNew">專案名稱</label><input id="projectNameNew" required maxlength="80" placeholder="輸入專案名稱"></div><div class="field"><label for="projectPm">主要對口 PM</label><input id="projectPm" maxlength="80" placeholder="輸入主要對口 PM 姓名" autocomplete="off"></div><div class="field"><label for="projectEngineer">主要負責工程師</label><input id="projectEngineer" maxlength="80" placeholder="輸入主要負責工程師姓名" autocomplete="off"></div><div class="field"><label for="projectStartNew">起始日期</label><input id="projectStartNew" type="date" required></div><div class="field"><label for="projectEndNew">結束日期</label><input id="projectEndNew" type="date" required></div></div><div class="modalActions"><button type="button" class="btn" data-action="close-modal">取消</button><button class="btn primary" type="submit">建立專案</button></div></form></div></div><div id="modalBack" class="modalBack"><div class="modal"><h2 id="modalTitle">新增項目</h2><form id="itemForm"><input id="editId" type="hidden"><div class="formGrid"><div class="field full"><label for="itemName">項目名稱</label><input id="itemName" required maxlength="80" placeholder="輸入項目名稱"></div><div class="field"><label for="itemPm">對口 PM</label><input id="itemPm" maxlength="80" placeholder="輸入對口 PM 姓名" autocomplete="off"></div><div class="field"><label for="itemDeveloper">負責開發人員</label><input id="itemDeveloper" maxlength="80" placeholder="輸入負責開發人員姓名" autocomplete="off"></div><div class="field"><label for="itemStart">起始日期</label><input id="itemStart" type="date" required></div><div class="field"><label for="itemEnd">結束日期</label><input id="itemEnd" type="date" required></div><div class="field"><label for="itemColor">標籤色彩</label><select id="itemColor"><option value="#579070">森林綠</option><option value="#6c96c9">天空藍</option><option value="#cf7771">珊瑚紅</option><option value="#d5a044">暖陽黃</option></select></div><label class="check" style="align-self:end;padding-bottom:10px"><input id="itemMilestone" type="checkbox"> 設為里程碑</label><div id="dependencyField" class="field full dependencyField"><label>綁定項目</label><div id="dependencyOptions" class="dependencyOptions"></div><div class="dependencyHelp">可選多個綁定項目；調整來源項目的日期時，綁定項目會同步移動，日期可以重疊。</div></div></div><div class="modalActions"><button type="button" class="btn" data-action="close-modal">取消</button><button class="btn primary" type="submit">儲存項目</button></div></form></div></div><div id="toast" class="toast"></div>
+<div id="projectModalBack" class="modalBack"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="newProjectTitle" tabindex="-1"><h2 id="newProjectTitle">新增專案</h2><form id="projectForm"><div class="formGrid"><div class="field full"><label for="projectTemplate">專案範例</label><select id="projectTemplate" class="select"><option value="">空白專案</option><option value="hardware">硬體產品開發</option><option value="software-small">小型軟體產品開發</option><option value="software-medium">中型軟體產品開發</option><option value="software-large">大型軟體產品開發</option></select><div id="templateNote" class="templateNote">選擇一個流程範例，或建立空白專案。</div></div><div class="field full"><label for="projectNameNew">專案名稱</label><input id="projectNameNew" required maxlength="80" placeholder="輸入專案名稱"></div><div class="field"><label for="projectPm">主要對口 PM</label><input id="projectPm" maxlength="80" placeholder="輸入主要對口 PM 姓名" autocomplete="off"></div><div class="field"><label for="projectEngineer">主要負責工程師</label><input id="projectEngineer" maxlength="80" placeholder="輸入主要負責工程師姓名" autocomplete="off"></div><div class="field"><label for="projectStartNew">起始日期</label><input id="projectStartNew" type="date" required></div><div class="field"><label for="projectEndNew">結束日期</label><input id="projectEndNew" type="date" required></div></div><div class="modalActions"><button type="button" class="btn" data-action="close-modal">取消</button><button class="btn primary" type="submit">建立專案</button></div></form></div></div><div id="modalBack" class="modalBack"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1"><h2 id="modalTitle">新增項目</h2><form id="itemForm"><input id="editId" type="hidden"><div class="formGrid"><div class="field full"><label for="itemName">項目名稱</label><input id="itemName" required maxlength="80" placeholder="輸入項目名稱"></div><div class="field"><label for="itemPm">對口 PM</label><input id="itemPm" maxlength="80" placeholder="輸入對口 PM 姓名" autocomplete="off"></div><div class="field"><label for="itemDeveloper">負責開發人員</label><input id="itemDeveloper" maxlength="80" placeholder="輸入負責開發人員姓名" autocomplete="off"></div><div class="field"><label for="itemStart">起始日期</label><input id="itemStart" type="date" required></div><div class="field"><label for="itemEnd">結束日期</label><input id="itemEnd" type="date" required></div><div class="field"><label for="itemColor">標籤色彩</label><select id="itemColor"><option value="#579070">森林綠</option><option value="#6c96c9">天空藍</option><option value="#cf7771">珊瑚紅</option><option value="#d5a044">暖陽黃</option></select></div><label class="check" style="align-self:end;padding-bottom:10px"><input id="itemMilestone" type="checkbox"> 設為里程碑</label><div id="dependencyField" class="field full dependencyField"><label>綁定項目</label><div id="dependencyOptions" class="dependencyOptions"></div><div class="dependencyHelp">可選多個綁定項目；調整來源項目的日期時，綁定項目會同步移動，日期可以重疊。</div></div></div><div class="modalActions"><button type="button" class="btn" data-action="close-modal">取消</button><button class="btn primary" type="submit">儲存項目</button></div></form></div></div><div id="toast" class="toast"></div>
 <script>
+(() => {
+  const viewport = window.visualViewport;
+  if (!viewport) return;
+  function fitDialogsToViewport() {
+    const style = document.documentElement.style;
+    style.setProperty('--visible-height', viewport.height + 'px');
+    style.setProperty('--visible-top', viewport.offsetTop + 'px');
+  }
+  viewport.addEventListener('resize', fitDialogsToViewport);
+  viewport.addEventListener('scroll', fitDialogsToViewport);
+  fitDialogsToViewport();
+})();
+
 (()=>{
 const KEY='project-planner-v1',WORK=KEY+'-workspace',today=new Date();today.setHours(0,0,0,0);let projects=[],activeId=null,days=1,drag=null,projectFilter='all';
 const $=s=>document.querySelector(s), iso=d=>{const x=new Date(d);return `${x.getFullYear()}-${String(x.getMonth()+1).padStart(2,'0')}-${String(x.getDate()).padStart(2,'0')}`},parse=s=>new Date(s+'T00:00:00'),add=(d,n)=>{const x=new Date(d);x.setDate(x.getDate()+n);return x},fmt=s=>{const d=parse(s);return `${d.getMonth()+1}/${d.getDate()}`},id=()=>Math.random().toString(36).slice(2,10),esc=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -95,8 +261,21 @@ function createSoftwareTemplate(key,name,startText){const palette={plan:'#5b8def
 ['m-kickoff','Kickoff、利害關係人與產品目標',0,1,'plan',[],true,24],['m-research','使用者訪談、流程盤點與競品研究',0,8,'plan',[],false,80],['m-discovery','需求工作坊與商業規則整理',5,8,'plan',['m-research'],false,96],['m-prd','PRD、非功能需求與驗收條件',12,9,'plan',['m-discovery'],false,120],['m-gate','產品需求與版本範圍核准',21,1,'plan',['m-prd'],true,16],['m-arch','系統架構、API 與資料模型設計',21,10,'design',['m-gate'],false,120],['m-ux','UX 流程、互動稿與設計系統',21,12,'design',['m-gate'],false,120],['m-devops','雲端環境、CI/CD、監控與測試環境',27,8,'build',['m-arch'],false,80],['m-api','核心 API、權限與資料服務',32,16,'build',['m-arch','m-devops'],false,240],['m-sprint1','Sprint 1：平台骨架與核心流程',32,15,'build',['m-ux','m-devops'],false,240],['m-unit','單元測試、自動化測試與 Code Review',37,34,'qa',['m-sprint1'],false,200],['m-sprint2','Sprint 2：主要業務模組',47,15,'build',['m-sprint1','m-api'],false,280],['m-integrations','第三方服務與資料匯入整合',52,14,'build',['m-api'],false,180],['m-sprint3','Sprint 3：管理介面與流程收尾',62,14,'build',['m-sprint2','m-integrations'],false,240],['m-integrationtest','整合、回歸與跨瀏覽器測試',70,10,'qa',['m-sprint3','m-unit'],false,160],['m-security','安全、效能與可及性檢查',72,8,'qa',['m-sprint3'],false,120],['m-migration','正式資料遷移演練與回復驗證',72,7,'qa',['m-integrations'],false,80],['m-docs','操作文件、客服流程與教育訓練',76,9,'release',['m-sprint3'],false,72],['m-uat','利害關係人 UAT 與驗收',82,8,'qa',['m-integrationtest','m-security','m-migration'],false,120],['m-fix','UAT 缺陷修正與 Release Candidate',90,7,'build',['m-uat'],false,120],['m-ready','上線準備審查與 Go／No-Go',97,1,'release',['m-fix','m-docs'],true,24],['m-launch','正式上線與切換',98,1,'release',['m-ready'],true,16],['m-hypercare','上線觀察、事件處理與穩定化',99,7,'release',['m-launch'],false,112]],
 'software-large':[
 ['l-kickoff','專案啟動、治理機制與成功指標',0,1,'plan',[],true,40],['l-discovery','領域研究、使用者研究與現況盤點',0,15,'plan',[],false,180],['l-require','跨部門需求分解與系統需求基線',12,18,'plan',['l-discovery'],false,240],['l-compliance','法規、隱私、資安與資料治理盤點',12,15,'plan',['l-discovery'],false,160],['l-gate','產品範圍與需求基線審查',30,1,'plan',['l-require','l-compliance'],true,32],['l-architecture','分散式架構、整合契約與技術設計',30,20,'design',['l-gate'],false,320],['l-ux','跨角色體驗設計與設計系統',30,25,'design',['l-gate'],false,240],['l-platform','雲端平台、CI/CD、觀測與測試環境',40,20,'build',['l-architecture'],false,240],['l-data','資料模型、治理與遷移工具',50,22,'build',['l-architecture','l-platform'],false,280],['l-domainA','子系統 A：核心服務與領域模組',55,30,'build',['l-platform','l-ux'],false,520],['l-domainB','子系統 B：使用者端與工作流程',55,35,'build',['l-platform','l-ux'],false,600],['l-domainC','子系統 C：管理、報表與權限',62,32,'build',['l-platform','l-ux'],false,560],['l-integrations','跨系統 API 與外部服務整合',82,30,'build',['l-domainA','l-domainB'],false,480],['l-unit','單元測試、靜態分析與持續驗證',58,55,'qa',['l-domainA'],false,360],['l-system','系統整合、端對端與回歸測試',110,20,'qa',['l-domainA','l-domainB','l-domainC','l-integrations'],false,360],['l-migration','資料轉換、分批演練與回復測試',108,20,'qa',['l-data','l-integrations'],false,240],['l-security','威脅建模、滲透測試與修補',112,23,'qa',['l-system'],false,320],['l-performance','容量、壓力、韌性與災難復原測試',128,18,'qa',['l-system','l-platform'],false,280],['l-docs','系統文件、維運手冊與人員訓練',135,18,'release',['l-system'],false,200],['l-pilot','封閉試點、使用者驗收與回饋',151,12,'qa',['l-security','l-performance','l-migration'],false,240],['l-fix','試點缺陷修正與分批部署排程',163,12,'build',['l-pilot'],false,240],['l-ready','正式發布審查與切換演練',175,1,'release',['l-fix','l-docs'],true,40],['l-rollout','分區／分批正式上線',176,3,'release',['l-ready'],false,120],['l-launch','全面上線完成',179,1,'release',['l-rollout'],true,24],['l-hypercare','高峰支援、穩定化與專案移交',180,10,'release',['l-launch'],false,280]]};const specs=schedules[key],anchor=workdayDateAt(startText,0),ids=new Map(specs.map(([k])=>[k,id()])),tasks=specs.map(([keyId,title,offset,duration,phase,deps,milestone,estimateHours])=>({id:ids.get(keyId),name:title,start:workdayDateAt(anchor,offset),end:workdayDateAt(anchor,offset+duration-1),color:palette[phase],milestone,done:false,status:'active',dependsOn:deps.map(k=>ids.get(k)).filter(Boolean),estimateHours,phase})),end=tasks.reduce((latest,t)=>t.end>latest?t.end:latest,tasks[0].end),effortHours=tasks.reduce((sum,t)=>sum+t.estimateHours,0);return{id:id(),project:name,start:anchor,end,weekends:false,tasks,todos:[],logs:[],templateKey:key,estimateHours:effortHours,teamSize:templateInfo[key].team,templateNote:templateInfo[key].note}}
-function buildTemplateProject(key,name,startText){if(!key)return{id:id(),project:name,start:startText,end:$('#itemEnd').value,weekends:false,tasks:[],todos:[],logs:[]};if(key.startsWith('software-'))return createSoftwareTemplate(key,name,startText);const source=createHardwareSample(startText),idMap=new Map((source.tasks||[]).map(t=>[t.id,id()])),tasks=(source.tasks||[]).map(t=>({...JSON.parse(JSON.stringify(t)),id:idMap.get(t.id),done:false,status:'active',dependsOn:(t.dependsOn||[]).map(dep=>idMap.get(dep)).filter(Boolean)}));return{...source,id:id(),project:name,tasks,todos:[],logs:[],templateKey:key,templateNote:templateInfo[key].note}}
-function updateTemplatePreview(setName=true){const key=$('#projectTemplate').value,info=templateInfo[key];$('#templateNote').textContent=info?info.note+(info.team?` 預估投入 ${info.team}；任務時數為團隊人時規劃值。`:''):'選擇一個流程範例，或建立空白專案。';if(info){if(setName)$('#projectNameNew').value=info.name;const end=key==='hardware'?workdayDateAt($('#projectStartNew').value,273):workdayDateAt($('#projectStartNew').value,info.days-1);$('#projectEndNew').value=end}else if(setName&&Object.values(templateInfo).some(x=>x.name===$('#projectNameNew').value))$('#projectNameNew').value=''}
+function buildTemplateProject(key,name,startText,endText){if(!key)return{id:id(),project:name,start:startText,end:endText,weekends:false,tasks:[],todos:[],logs:[]};if(key.startsWith('software-'))return createSoftwareTemplate(key,name,startText);const source=createHardwareSample(startText),idMap=new Map((source.tasks||[]).map(t=>[t.id,id()])),tasks=(source.tasks||[]).map(t=>({...JSON.parse(JSON.stringify(t)),id:idMap.get(t.id),done:false,status:'active',dependsOn:(t.dependsOn||[]).map(dep=>idMap.get(dep)).filter(Boolean)}));return{...source,id:id(),project:name,tasks,todos:[],logs:[],templateKey:key,templateNote:templateInfo[key].note}}
+function updateTemplatePreview(setName = true) {
+  const template = templateInfo[$('#projectTemplate').value];
+  const nameInput = $('#projectNameNew');
+  const note = $('#templateNote');
+  if (!template) {
+    note.textContent = '選擇一個流程範例，或建立空白專案。';
+    if (setName && Object.values(templateInfo).some(entry => entry.name === nameInput.value)) nameInput.value = '';
+    return;
+  }
+  note.textContent = template.note + (template.team ? ` 預估投入 ${template.team}；任務時數為團隊人時規劃值。` : '');
+  if (setName) nameInput.value = template.name;
+  const start = $('#projectStartNew').value;
+  $('#projectEndNew').value = start ? workdayDateAt(start, template.days - 1) : '';
+}
 function persist(){localStorage.setItem(WORK,JSON.stringify({projects,activeId}));const p=active();if(p)localStorage.setItem(KEY,JSON.stringify(p))}function active(){return projects.find(p=>p.id===activeId)}
 function showList(){ $('#listView').hidden=false;$('#detailView').hidden=true;renderProjects() }function showDetail(){const p=active();if(!p){showList();return}$('#listView').hidden=true;$('#detailView').hidden=false;renderDetail()}
 function record(p,action,item,details){if(!Array.isArray(p.logs))p.logs=[];p.logs.push({id:id(),time:Date.now(),action,item,details})}
@@ -113,27 +292,175 @@ function dependencyStart(p,task){return null}
 function shiftDependents(p,seedId,delta){if(!delta)return;const descendants=new Set(),queue=[seedId];while(queue.length){const current=queue.shift();for(const t of p.tasks)if((t.dependsOn||[]).includes(current)&&!descendants.has(t.id)){descendants.add(t.id);queue.push(t.id)}}const pending=new Set(descendants),original=new Map(p.tasks.filter(t=>pending.has(t.id)).map(t=>[t.id,{start:parse(t.start),end:parse(t.end)}]));while(pending.size){let progressed=false;for(const t of p.tasks){if(!pending.has(t.id))continue;if((t.dependsOn||[]).some(dep=>pending.has(dep)))continue;const old=original.get(t.id),duration=Math.round((old.end-old.start)/86400000),desired=add(old.start,delta),start=desired,actual=Math.round((start-old.start)/86400000);t.start=iso(start);t.end=iso(add(start,duration));if(actual)record(p,'連動調整',t.name,`依前置項目日期調整為 ${t.start} – ${t.end}`);pending.delete(t.id);progressed=true}if(!progressed){for(const t of p.tasks)if(pending.has(t.id)){const old=original.get(t.id),duration=Math.round((old.end-old.start)/86400000),start=add(old.start,delta);t.start=iso(start);t.end=iso(add(start,duration));pending.delete(t.id)}break}}}
 function setTaskDates(p,task,startText,endText){const oldStart=parse(task.start),oldEnd=parse(task.end),duration=Math.max(0,Math.round((parse(endText)-parse(startText))/86400000));let start=parse(startText);const end=add(start,duration),startDelta=Math.round((start-oldStart)/86400000),endDelta=Math.round((end-oldEnd)/86400000);task.start=iso(start);task.end=iso(end);const cascade=startDelta||endDelta;if(cascade)shiftDependents(p,task.id,cascade);return{oldStart:iso(oldStart),oldEnd:iso(oldEnd),startDelta,endDelta}}
 function drawDependencies(){const p=active(),root=$('#gantt'),baseCell=root.querySelector('.timelineCell');if(!baseCell)return;const rootRect=root.getBoundingClientRect(),cellRect=baseCell.getBoundingClientRect(),headerHeight=root.querySelector('.gHead')?.getBoundingClientRect().height||44,width=baseCell.scrollWidth||baseCell.clientWidth,height=Math.max(root.scrollHeight-headerHeight,1),svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('class','dependencySvg');svg.setAttribute('width',width);svg.setAttribute('height',height);svg.setAttribute('viewBox',`0 0 ${width} ${height}`);svg.style.left=`${cellRect.left-rootRect.left}px`;svg.style.top=`${headerHeight}px`;const defs=document.createElementNS(svg.namespaceURI,'defs'),marker=document.createElementNS(svg.namespaceURI,'marker');marker.setAttribute('id','dependencyArrow');marker.setAttribute('markerWidth','7');marker.setAttribute('markerHeight','7');marker.setAttribute('refX','6');marker.setAttribute('refY','3.5');marker.setAttribute('orient','auto');marker.setAttribute('markerUnits','strokeWidth');const arrow=document.createElementNS(svg.namespaceURI,'path');arrow.setAttribute('d','M0,0 L7,3.5 L0,7 z');arrow.setAttribute('fill','#718d7a');marker.appendChild(arrow);defs.appendChild(marker);svg.appendChild(defs);const bars=new Map([...root.querySelectorAll('[data-bar]')].map(bar=>[bar.dataset.bar,bar]));for(const task of p.tasks||[]){const target=bars.get(task.id);if(!target)continue;const targetRect=target.getBoundingClientRect(),targetY=targetRect.top+targetRect.height/2-rootRect.top-headerHeight,targetX=targetRect.left-cellRect.left;for(const depId of task.dependsOn||[]){const source=bars.get(depId);if(!source)continue;const sourceRect=source.getBoundingClientRect(),sourceX=sourceRect.right-cellRect.left,sourceY=sourceRect.top+sourceRect.height/2-rootRect.top-headerHeight,overlap=targetX<sourceX+8,elbow=overlap?Math.max(sourceX,targetX)+18:sourceX+Math.max(10,Math.min(26,(targetX-sourceX)/2)),endX=Math.max(0,targetX-6),path=document.createElementNS(svg.namespaceURI,'path');path.setAttribute('class','dependencyPath');path.setAttribute('d',`M ${sourceX} ${sourceY} H ${elbow} V ${targetY} H ${endX}`);path.setAttribute('marker-end','url(#dependencyArrow)');svg.appendChild(path)}}root.appendChild(svg)}function drawTodayLine(){const p=active(),root=$('#gantt'),{start}=range(),offset=(today-start)/86400000;if(offset<0||offset>=days)return;const ruler=root.querySelector('.timeline'),cell=root.querySelector('.timelineCell'),width=(cell||ruler)?.clientWidth||days*38,taskColumnWidth=parseFloat(getComputedStyle(root).getPropertyValue('--task-col-width'))||280,line=document.createElement('div');line.className='todayLine';line.style.left=`${taskColumnWidth+offset*width/days}px`;line.style.top='0';line.style.bottom='auto';line.style.height=`${root.scrollHeight}px`;line.title='今天';root.appendChild(line)}
-function scrollToToday(){const p=active(),{start}=range(),offset=(today-start)/86400000,wrap=$('.ganttWrap');if(offset>=0&&offset<days)wrap.scrollTo({left:Math.max(0,offset*38-wrap.clientWidth/2),behavior:'smooth'});else $('#gantt').scrollIntoView({behavior:'smooth',block:'center'})}
-function renderDetail(){const p=active();$('#projectName').value=p.project||'';$('#projectStart').value=p.start||iso(today);$('#projectEnd').value=p.end||iso(add(today,30));$('#projectDuration').textContent=`共 ${countIncludedDays(p.start,p.end,!!p.weekends)} ${p.weekends?'日曆日（含週末）':'工作日（不含週末）'}`;$('#saveProjectDates').disabled=true;const done=(p.tasks||[]).filter(t=>t.done||t.status==='done').length;$('#doneCount').textContent=done;$('#totalCount').textContent=(p.tasks||[]).length;const estimate=Number(p.estimateHours)||(p.tasks||[]).reduce((n,t)=>n+(Number(t.estimateHours)||0),0);$('#effortEstimate').textContent=estimate?`估計投入 ${estimate.toLocaleString('zh-TW')} 人時${p.teamSize?` · ${p.teamSize}`:''}`:(p.templateNote||'');$('#weekendToggle').classList.toggle('on',!!p.weekends);renderGantt();renderTodos();renderMilestones()}function renderGantt(){const p=active(),{start}=range(),dates=Array.from({length:days},(_,i)=>add(start,i));const monthLabel=`${start.getFullYear()}.${String(start.getMonth()+1).padStart(2,'0')}`;let html=`<div class="gHead"><div class="labelHead">完成 / 項目</div><div class="timeline" style="--days:${days}"><div class="monthLabels">${monthHeaders(start,dates)}</div><div class="dayLabels">${dates.map(d=>`<span style="${!p.weekends&&[0,6].includes(d.getDay())?'color:#d3dad5':''}">${d.getDate()}</span>`).join('')}</div></div></div>`;html+=(p.tasks||[]).map(t=>{const off=(parse(t.start)-start)/86400000,len=Math.max(1,(parse(t.end)-parse(t.start))/86400000+1),left=off/days*100,width=Math.max(1,len/days*100),done=!!(t.done||t.status==='done');return `<div class="gRow"><div class="taskInfo"><input class="taskDone" type="checkbox" data-done="${t.id}" aria-label="${done?'取消完成':'標示完成'}" ${done?'checked':''}><span class="dot" style="background:${t.color}"></span><div class="taskText" data-edit="${t.id}"><div class="taskName" style="${done?'color:#7d8881;text-decoration:line-through':''}">${t.milestone?'◆ ':''}${esc(t.name)}</div><div class="taskDates">${fmt(t.start)} – ${fmt(t.end)} · 共 ${countIncludedDays(t.start,t.end,!!p.weekends)} ${p.weekends?'日':'工作日'}${t.estimateHours?` · ${t.estimateHours} h`:''}</div></div><div class="rowActions"><button type="button" data-edit="${t.id}" title="編輯">✎</button><button type="button" data-delete="${t.id}" title="刪除">×</button></div></div><div class="timelineCell" style="--days:${days}"><div class="bar ${done?'completed':''} ${t.milestone?'milestone':''}" data-bar="${t.id}" style="left:${left}%;width:${width}%;--bar:${done?'#aeb7b0':t.color}" title="${esc(t.name)}"><span class="barLabel">${t.milestone?'◆':esc(t.name)}</span>${!t.milestone?'<span class="barHandle"></span>':''}</div></div></div>`}).join('');if(!(p.tasks||[]).length)html+='<div class="empty">尚未新增項目</div>';$('#gantt').innerHTML=html;p.tasks.forEach(t=>{if(!t.pm&&!t.developer)return;const text=$(`#gantt [data-edit=\"${t.id}\"]`),people=document.createElement('div');people.className='taskPeople';people.textContent=[t.pm?`PM：${t.pm}`:'',t.developer?`開發：${t.developer}`:''].filter(Boolean).join('　');text?.appendChild(people)});$('#gantt').querySelectorAll('[data-done]').forEach(c=>c.addEventListener('change',()=>{const t=p.tasks.find(x=>x.id===c.dataset.done);const was=!!(t.done||t.status==='done');t.done=c.checked;t.status=c.checked?'done':'active';record(p,'狀態變更',t.name,was!==c.checked?(c.checked?'標記為已完成':'改回進行中'):'');persist();renderDetail()}));$('#gantt').querySelectorAll('[data-edit]').forEach(el=>el.addEventListener('click',()=>openItem(el.dataset.edit)));$('#gantt').querySelectorAll('[data-delete]').forEach(el=>el.addEventListener('click',()=>deleteItem(el.dataset.delete)));$('#gantt').querySelectorAll('[data-bar]').forEach(el=>el.addEventListener('pointerdown',startDrag));drawDependencies();drawTodayLine()}
+function scrollToToday() {
+  const wrap = $('.ganttWrap');
+  const marker = $('#gantt .todayLine');
+  if (!marker) return;
+  const frozenWidth = $('#gantt .labelHead').offsetWidth;
+  const middle = frozenWidth + (wrap.clientWidth - frozenWidth) / 2;
+  wrap.scrollTo({ left: Math.max(0, marker.offsetLeft - middle), behavior: 'smooth' });
+}
+function renderDetail(){const p=active();$('#projectName').value=p.project||'';$('#projectStart').value=p.start||iso(today);$('#projectEnd').value=p.end||iso(add(today,30));$('#projectDuration').textContent=`共 ${countIncludedDays(p.start,p.end,!!p.weekends)} ${p.weekends?'日曆日（含週末）':'工作日（不含週末）'}`;$('#saveProjectDates').disabled=true;const done=(p.tasks||[]).filter(t=>t.done||t.status==='done').length;$('#doneCount').textContent=done;$('#totalCount').textContent=(p.tasks||[]).length;const estimate=Number(p.estimateHours)||(p.tasks||[]).reduce((n,t)=>n+(Number(t.estimateHours)||0),0);$('#effortEstimate').textContent=estimate?`估計投入 ${estimate.toLocaleString('zh-TW')} 人時${p.teamSize?` · ${p.teamSize}`:''}`:(p.templateNote||'');$('#weekendToggle').classList.toggle('on',!!p.weekends);renderGantt();renderTodos();renderMilestones()}function renderGantt(){const p=active(),{start}=range();$('#gantt').style.setProperty('--days',days);const dates=Array.from({length:days},(_,i)=>add(start,i));const monthLabel=`${start.getFullYear()}.${String(start.getMonth()+1).padStart(2,'0')}`;let html=`<div class="gHead"><div class="labelHead">完成 / 項目</div><div class="timeline" style="--days:${days}"><div class="monthLabels">${monthHeaders(start,dates)}</div><div class="dayLabels">${dates.map(d=>`<span style="${!p.weekends&&[0,6].includes(d.getDay())?'color:#d3dad5':''}">${d.getDate()}</span>`).join('')}</div></div></div>`;html+=(p.tasks||[]).map(t=>{const off=(parse(t.start)-start)/86400000,len=Math.max(1,(parse(t.end)-parse(t.start))/86400000+1),left=off/days*100,width=len/days*100,done=!!(t.done||t.status==='done');return `<div class="gRow"><div class="taskInfo"><input class="taskDone" type="checkbox" data-done="${t.id}" aria-label="${done?'取消完成':'標示完成'}" ${done?'checked':''}><span class="dot" style="background:${t.color}"></span><div class="taskText" data-edit="${t.id}"><div class="taskName" style="${done?'color:#7d8881;text-decoration:line-through':''}">${t.milestone?'◆ ':''}${esc(t.name)}</div><div class="taskDates">${fmt(t.start)} – ${fmt(t.end)} · 共 ${countIncludedDays(t.start,t.end,!!p.weekends)} ${p.weekends?'日':'工作日'}${t.estimateHours?` · ${t.estimateHours} h`:''}</div></div><div class="rowActions"><button type="button" data-edit="${t.id}" title="編輯">✎</button><button type="button" data-delete="${t.id}" title="刪除">×</button></div></div><div class="timelineCell" style="--days:${days}"><div class="bar ${done?'completed':''} ${t.milestone?'milestone':''}" data-bar="${t.id}" style="left:${left}%;width:${width}%;--bar:${done?'#aeb7b0':t.color}" title="${esc(t.name)}"><span class="barLabel">${t.milestone?'◆':esc(t.name)}</span>${!t.milestone?'<span class="barHandle"></span>':''}</div></div></div>`}).join('');if(!(p.tasks||[]).length)html+='<div class="empty">尚未新增項目</div>';$('#gantt').innerHTML=html;p.tasks.forEach(t=>{if(!t.pm&&!t.developer)return;const text=$(`#gantt [data-edit=\"${t.id}\"]`),people=document.createElement('div');people.className='taskPeople';people.textContent=[t.pm?`PM：${t.pm}`:'',t.developer?`開發：${t.developer}`:''].filter(Boolean).join('　');text?.appendChild(people)});$('#gantt').querySelectorAll('[data-done]').forEach(c=>c.addEventListener('change',()=>{const t=p.tasks.find(x=>x.id===c.dataset.done);const was=!!(t.done||t.status==='done');t.done=c.checked;t.status=c.checked?'done':'active';record(p,'狀態變更',t.name,was!==c.checked?(c.checked?'標記為已完成':'改回進行中'):'');persist();renderDetail()}));$('#gantt').querySelectorAll('[data-edit]').forEach(el=>el.addEventListener('click',()=>openItem(el.dataset.edit)));$('#gantt').querySelectorAll('[data-delete]').forEach(el=>el.addEventListener('click',()=>deleteItem(el.dataset.delete)));$('#gantt').querySelectorAll('[data-bar]').forEach(el=>el.addEventListener('pointerdown',startDrag));drawDependencies();drawTodayLine()}
 function renderTodos(){const p=active();if(!Array.isArray(p.todos))p.todos=[];const box=$('#todoList');box.innerHTML=p.todos.length?p.todos.map(t=>`<div class="listRow"><span class="dot" style="background:${t.status==='done'?'#9ba69f':'#d5a044'}"></span><span class="todoText ${t.status==='done'?'todoDone':''}">${esc(t.text)}</span><select class="select" data-todo="${t.id}" aria-label="代辦完成狀態"><option value="todo" ${t.status!=='done'?'selected':''}>待辦</option><option value="done" ${t.status==='done'?'selected':''}>已完成</option></select><button class="rowActions" style="opacity:1" data-todo-delete="${t.id}" type="button" title="刪除">×</button></div>`).join(''):'<div class="empty">目前沒有代辦事項</div>';box.querySelectorAll('[data-todo]').forEach(s=>s.addEventListener('change',()=>{const t=p.todos.find(x=>x.id===s.dataset.todo);const old=t.status;t.status=s.value;if(old!==t.status)record(p,'代辦狀態變更',t.text,`${old==='done'?'已完成':'待辦'} → ${t.status==='done'?'已完成':'待辦'}`);persist();renderTodos()}));box.querySelectorAll('[data-todo-delete]').forEach(b=>b.addEventListener('click',()=>{const t=p.todos.find(x=>x.id===b.dataset.todoDelete);if(t)record(p,'刪除代辦',t.text,'刪除代辦事項');p.todos=p.todos.filter(t=>t.id!==b.dataset.todoDelete);persist();renderTodos()}))}
 function renderMilestones(){const list=(active().tasks||[]).filter(t=>t.milestone).sort((a,b)=>a.start.localeCompare(b.start));$('#milestoneList').innerHTML=list.length?list.map(t=>`<div class="listRow"><span style="color:var(--amber)">◆</span><span class="todoText">${esc(t.name)}</span><span class="milestoneDate">${fmt(t.start)}</span></div>`).join(''):'<div class="empty">尚未設定里程碑</div>'}
-function openProject(){$('#projectForm').reset();$('#projectNameNew').value='';$('#projectStartNew').value=iso(today);$('#projectEndNew').value=iso(add(today,30));$('#projectTemplate').value='';updateTemplatePreview(false);$('#projectModalBack').classList.add('show');$('#projectNameNew').focus()}function openItem(itemId){const t=itemId?active().tasks.find(x=>x.id===itemId):null;$('#itemForm').dataset.mode='task';$('#modalTitle').textContent=t?'編輯項目':'新增項目';$('#editId').value=t?.id||'';$('#itemName').value=t?.name||'';$('#itemName').placeholder='輸入項目名稱';$('#itemPm').value=t?.pm||'';$('#itemDeveloper').value=t?.developer||'';$('#itemStart').value=t?.start||iso(today);$('#itemEnd').value=t?.end||iso(today);$('#itemColor').value=t?.color||'#579070';$('#itemMilestone').checked=!!t?.milestone;$('#itemMilestone').closest('.check').hidden=false;$('#dependencyField').hidden=false;renderDependencyOptions(t);$('#modalBack').classList.add('show');$('#itemName').focus()}
+function focusOpenedDialog(input) {
+  const dialog = input.closest('.modal');
+  dialog.scrollTop = 0;
+  const focusTarget = window.matchMedia('(pointer: coarse)').matches ? dialog : input;
+  focusTarget.focus({preventScroll: true});
+}
+function openProject(){$('#projectForm').reset();$('#projectNameNew').value='';$('#projectStartNew').value=iso(today);$('#projectEndNew').value=iso(add(today,30));$('#projectTemplate').value='';updateTemplatePreview(false);$('#projectModalBack').classList.add('show');focusOpenedDialog($('#projectNameNew'))}function openItem(itemId){const t=itemId?active().tasks.find(x=>x.id===itemId):null;$('#itemForm').dataset.mode='task';$('#modalTitle').textContent=t?'編輯項目':'新增項目';$('#editId').value=t?.id||'';$('#itemName').value=t?.name||'';$('#itemName').placeholder='輸入項目名稱';$('#itemPm').value=t?.pm||'';$('#itemDeveloper').value=t?.developer||'';$('#itemStart').value=t?.start||iso(today);$('#itemEnd').value=t?.end||iso(today);$('#itemColor').value=t?.color||'#579070';$('#itemMilestone').checked=!!t?.milestone;$('#itemMilestone').closest('.check').hidden=false;$('#dependencyField').hidden=false;renderDependencyOptions(t);$('#modalBack').classList.add('show');focusOpenedDialog($('#itemName'))}
 function closeModal(){$('#modalBack').classList.remove('show');$('#projectModalBack').classList.remove('show')}
-function exportBackup(){const backup={format:'project-planner-backup',version:1,exportedAt:new Date().toISOString(),activeId,projects};const blob=new Blob([JSON.stringify(backup,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),link=document.createElement('a');link.href=url;link.download=`project-planner-backup-${iso(today)}.json`;document.body.appendChild(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);toast('備份檔已下載')}
+function createBackup() {
+  const now = new Date();
+  const data = {format: 'project-planner-backup', version: 1, exportedAt: now.toISOString(), activeId, projects};
+  return {
+    name: 'project-planner-backup-' + iso(now),
+    contents: new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'})
+  };
+}
+
+function downloadBackup(backup) {
+  const url = URL.createObjectURL(backup.contents);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = backup.name + '.json';
+  document.body.append(link);
+  link.click();
+  link.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 60000);
+}
+
+function showBackupStatus(message) {
+  const status = $('#backupStatus');
+  status.hidden = !message;
+  status.textContent = message;
+}
+
+function exportBackup() {
+  showBackupStatus('');
+  downloadBackup(createBackup());
+  toast('已開始下載備份檔');
+}
+
+async function shareBackup(button) {
+  if (button.disabled) return;
+  showBackupStatus('');
+  const backup = createBackup();
+  button.disabled = true;
+  try {
+    if (typeof File === 'function' && navigator.share && navigator.canShare) {
+      // Some share sheets accept plain text attachments but decline JSON.
+      for (const [extension, type] of [['.json', 'application/json'], ['.txt', 'text/plain']]) {
+        const file = new File([backup.contents], backup.name + extension, {type});
+        const payload = {files: [file]};
+        if (!navigator.canShare(payload)) continue;
+        await navigator.share(payload);
+        if (extension === '.txt') showBackupStatus('本次使用文字檔分享，收件人可直接用「匯入備份」開啟。');
+        return;
+      }
+    }
+    downloadBackup(backup);
+    showBackupStatus('此瀏覽器無法直接分享附件，已開始下載備份。請從「檔案」開啟下載項目，點「分享」後選擇 LINE 或其他 App。');
+  } catch (error) {
+    if (error.name !== 'AbortError') {
+      showBackupStatus('未能開啟檔案分享。可再次點選「分享備份」，或使用「匯出備份」下載後分享。');
+    }
+  } finally {
+    button.disabled = false;
+  }
+}
 async function importBackup(event){const file=event.target.files?.[0];if(!file)return;try{if(file.size>8*1024*1024)throw new Error('檔案超過 8 MB');const backup=JSON.parse(await file.text());if(backup.format!=='project-planner-backup'||backup.version!==1||!Array.isArray(backup.projects))throw new Error('這不是支援的專案備份檔');for(const p of backup.projects){if(!p||typeof p.id!=='string'||typeof p.project!=='string'||!Array.isArray(p.tasks))throw new Error('備份資料格式不完整');p.tasks.forEach(t=>{if(!t||typeof t.id!=='string'||typeof t.name!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(t.start)||!/^\d{4}-\d{2}-\d{2}$/.test(t.end)||!/^#[\da-f]{6}$/i.test(t.color||''))throw new Error('備份中有無效任務資料');if(!Array.isArray(t.dependsOn))t.dependsOn=[]});if(!Array.isArray(p.todos))p.todos=[];if(!Array.isArray(p.logs))p.logs=[]}if(!confirm(`將匯入 ${backup.projects.length} 個專案，並取代這台電腦目前的專案資料。請先確認有需要保留的資料已匯出備份。`))return;const oldProjects=projects,oldActive=activeId,oldWorkspace=localStorage.getItem(WORK),oldCurrent=localStorage.getItem(KEY);projects=backup.projects;activeId=projects.some(p=>p.id===backup.activeId)?backup.activeId:(projects[0]?.id||null);try{persist()}catch(err){projects=oldProjects;activeId=oldActive;try{oldWorkspace===null?localStorage.removeItem(WORK):localStorage.setItem(WORK,oldWorkspace);oldCurrent===null?localStorage.removeItem(KEY):localStorage.setItem(KEY,oldCurrent)}catch{}throw new Error('瀏覽器儲存空間不足，匯入未完成')}showList();toast('專案資料已匯入')}catch(err){toast(err.message||'無法讀取備份檔')}finally{event.target.value=''}}
-function saveProjectForm(e){e.preventDefault();const name=$('#projectNameNew').value.trim(),start=$('#projectStartNew').value,end=$('#projectEndNew').value;if(!name)return;if(end<start){toast('結束日期不能早於起始日期');return}const p=buildTemplateProject($('#projectTemplate').value,name,start);p.end=end;p.primaryPm=$('#projectPm').value.trim();p.primaryEngineer=$('#projectEngineer').value.trim();projects.push(p);activeId=p.id;persist();closeModal();showDetail()}
+function saveProjectForm(e){e.preventDefault();const name=$('#projectNameNew').value.trim(),start=$('#projectStartNew').value,end=$('#projectEndNew').value;if(!name)return;if(end<start){toast('結束日期不能早於起始日期');return}const p=buildTemplateProject($('#projectTemplate').value,name,start,end);p.end=end;p.primaryPm=$('#projectPm').value.trim();p.primaryEngineer=$('#projectEngineer').value.trim();projects.push(p);activeId=p.id;persist();closeModal();showDetail()}
 function saveForm(e){e.preventDefault();const name=$('#itemName').value.trim(),start=$('#itemStart').value,end=$('#itemEnd').value;if(!name)return;if(end<start){toast('結束日期不能早於起始日期');return}const p=active(),eid=$('#editId').value,dependsOn=[...$('#dependencyOptions').querySelectorAll('input:checked')].map(x=>x.value),t={id:eid||id(),name,start,end,color:$('#itemColor').value,pm:$('#itemPm').value.trim(),developer:$('#itemDeveloper').value.trim(),milestone:$('#itemMilestone').checked,dependsOn},i=p.tasks.findIndex(x=>x.id===eid);if(i>=0){const old=p.tasks[i],before={...old,dependsOn:[...(old.dependsOn||[])]},changes=[];old.dependsOn=dependsOn;const schedule=setTaskDates(p,old,start,end);t.start=old.start;t.end=old.end;if(before.name!==t.name)changes.push(`名稱：${before.name} → ${t.name}`);if((before.pm||'')!==t.pm)changes.push(`對口 PM：${before.pm||'未設定'} → ${t.pm||'未設定'}`);if((before.developer||'')!==t.developer)changes.push(`負責開發人員：${before.developer||'未設定'} → ${t.developer||'未設定'}`);if(before.start!==t.start||before.end!==t.end)changes.push(`日期：${before.start} – ${before.end} → ${t.start} – ${t.end}`);if(!!before.milestone!==t.milestone)changes.push(t.milestone?'設為里程碑':'取消里程碑');if(before.color!==t.color)changes.push('標籤色彩已調整');if(before.dependsOn.join(',')!==dependsOn.join(',')){const labels=dependsOn.map(key=>p.tasks.find(x=>x.id===key)?.name).filter(Boolean);changes.push(labels.length?`綁定項目：${labels.join('、')}`:'已解除綁定')}if(changes.length)record(p,'編輯',t.name,changes.join('；'));p.tasks[i]={...old,...t}}else{t.done=false;t.status='active';p.tasks.push(t);setTaskDates(p,t,start,end);record(p,'新增',t.name,`新增項目（${t.start} – ${t.end}）${t.milestone?'，設為里程碑':''}${dependsOn.length?'，設定前置項目':''}`)}persist();closeModal();renderDetail()}
 function deleteItem(itemId){if(!confirm('確定刪除此項目？'))return;const p=active(),item=p.tasks.find(t=>t.id===itemId);if(item)record(p,'刪除',item.name,`刪除任務（${fmt(item.start)} – ${fmt(item.end)}）`);if(item)for(const t of p.tasks)if((t.dependsOn||[]).includes(itemId)){t.dependsOn=t.dependsOn.filter(x=>x!==itemId);record(p,'前置項目移除',t.name,`已解除「${item.name}」的前置關係`)}p.tasks=p.tasks.filter(t=>t.id!==itemId);persist();renderDetail()}
 function toast(msg){const el=$('#toast');el.textContent=msg;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),1800)}
-function startDrag(e){const bar=e.currentTarget,p=active(),t=p.tasks.find(x=>x.id===bar.dataset.bar);if(!t)return;const isMilestone=!!t.milestone,resizing=!isMilestone&&e.target.classList.contains('barHandle'),start=parse(t.start),end=parse(t.end),width=bar.parentElement.clientWidth,x=e.clientX;let delta=0;bar.setPointerCapture(e.pointerId);bar.onpointermove=ev=>{delta=Math.round((ev.clientX-x)/(width/days));if(resizing){const length=Math.max(1,(end-start)/86400000+1+delta);bar.style.width=(length/days*100)+'%'}else bar.style.transform=`translateX(${delta*width/days}px)${isMilestone?' rotate(45deg)':''}`};bar.onpointerup=()=>{if(!delta)return;const newStart=resizing?start:add(start,delta),newEnd=resizing?add(end,delta):add(end,delta),beforeStart=t.start,beforeEnd=t.end;setTaskDates(p,t,iso(newStart),iso(newEnd));if(t.start!==beforeStart||t.end!==beforeEnd)record(p,'調整時程',t.name,`日期：${beforeStart} – ${beforeEnd} → ${t.start} – ${t.end}`);persist();renderDetail()}}
-const ganttWrap=$('.ganttWrap');let panState=null;
-ganttWrap.addEventListener('pointerdown',e=>{if(e.button!==0||e.target.closest('.bar,.taskInfo,.labelHead'))return;const area=e.target.closest('.timeline,.timelineCell');if(!area)return;panState={x:e.clientX,left:ganttWrap.scrollLeft,pointerId:e.pointerId};ganttWrap.classList.add('isPanning');ganttWrap.setPointerCapture(e.pointerId);e.preventDefault()});
+function startDrag(event) {
+  if (!event.isPrimary || event.button !== 0) return;
+  const bar = event.currentTarget;
+  const project = active();
+  const task = project.tasks.find(item => item.id === bar.dataset.bar);
+  if (!task) return;
+  const resize = !task.milestone && event.target.classList.contains('barHandle');
+  const start = parse(task.start);
+  const end = parse(task.end);
+  const duration = Math.round((end - start) / 86400000) + 1;
+  const dayWidth = bar.parentElement.clientWidth / days;
+  const originalWidth = bar.style.width;
+  const pointerId = event.pointerId;
+  const origin = event.clientX;
+  let delta = 0;
+
+  function move(pointer) {
+    if (pointer.pointerId !== pointerId) return;
+    delta = Math.round((pointer.clientX - origin) / dayWidth);
+    if (resize) {
+      delta = Math.max(1 - duration, delta);
+      bar.style.width = ((duration + delta) / days * 100) + '%';
+    } else {
+      bar.style.transform = 'translateX(' + (delta * dayWidth) + 'px)' + (task.milestone ? ' rotate(45deg)' : '');
+    }
+  }
+
+  function finish(pointer) {
+    if (pointer.pointerId !== pointerId) return;
+    bar.removeEventListener('pointermove', move);
+    bar.removeEventListener('pointerup', finish);
+    bar.removeEventListener('pointercancel', finish);
+    bar.removeEventListener('lostpointercapture', finish);
+    const commit = pointer.type === 'pointerup';
+    if (commit) move(pointer);
+    if (bar.hasPointerCapture(pointerId)) bar.releasePointerCapture(pointerId);
+    bar.style.width = originalWidth;
+    bar.style.removeProperty('transform');
+    if (!commit || !delta) return;
+    const before = task.start + ' – ' + task.end;
+    setTaskDates(project, task, iso(resize ? start : add(start, delta)), iso(add(end, delta)));
+    record(project, '調整時程', task.name, '日期：' + before + ' → ' + task.start + ' – ' + task.end);
+    persist();
+    renderDetail();
+  }
+
+  bar.setPointerCapture(pointerId);
+  bar.addEventListener('pointermove', move);
+  bar.addEventListener('pointerup', finish);
+  bar.addEventListener('pointercancel', finish);
+  bar.addEventListener('lostpointercapture', finish);
+}
+const ganttWrap = $('.ganttWrap');
+let panState = null;
+let overlayFrame;
+function queueGanttOverlayUpdate() {
+  cancelAnimationFrame(overlayFrame);
+  overlayFrame = requestAnimationFrame(() => {
+    const root = $('#gantt');
+    if (!root.offsetWidth || !active()) return;
+    root.querySelector('.dependencySvg')?.remove();
+    root.querySelector('.todayLine')?.remove();
+    drawDependencies();
+    drawTodayLine();
+  });
+}
+if (typeof ResizeObserver !== 'undefined') {
+  const ganttObserver = new ResizeObserver(queueGanttOverlayUpdate);
+  ganttObserver.observe(ganttWrap);
+  ganttObserver.observe($('#gantt'));
+} else {
+  window.addEventListener('resize', queueGanttOverlayUpdate);
+}
+document.fonts?.ready.then(queueGanttOverlayUpdate);
+ganttWrap.addEventListener('pointerdown',e=>{if(e.pointerType==='touch'||e.button!==0||e.target.closest('.bar,.taskInfo,.labelHead'))return;const area=e.target.closest('.timeline,.timelineCell');if(!area)return;panState={x:e.clientX,left:ganttWrap.scrollLeft,pointerId:e.pointerId};ganttWrap.classList.add('isPanning');ganttWrap.setPointerCapture(e.pointerId);e.preventDefault()});
 ganttWrap.addEventListener('pointermove',e=>{if(!panState||e.pointerId!==panState.pointerId)return;ganttWrap.scrollLeft=panState.left-(e.clientX-panState.x)});
 const stopPan=e=>{if(!panState||e.pointerId!==panState.pointerId)return;panState=null;ganttWrap.classList.remove('isPanning')};
 ganttWrap.addEventListener('pointerup',stopPan);ganttWrap.addEventListener('pointercancel',stopPan);ganttWrap.addEventListener('lostpointercapture',stopPan);
-document.querySelectorAll('[data-project-filter]').forEach(b=>b.addEventListener('click',()=>{projectFilter=b.dataset.projectFilter;renderProjects()}));$('#projectSearch').addEventListener('input',renderProjects);$('#projectTemplate').addEventListener('change',()=>updateTemplatePreview(true));$('#projectStartNew').addEventListener('change',()=>{if($('#projectTemplate').value)updateTemplatePreview(false)});$('#topToday').textContent=today.toLocaleDateString('zh-TW',{year:'numeric',month:'long',day:'numeric'});document.addEventListener('click',e=>{const b=e.target.closest('[data-action]');if(!b)return;switch(b.dataset.action){case'new-project':openProject();break;case'new-task':openItem();break;case'back':showList();break;case'logs':showLogs();break;case'log-back':$('#logView').hidden=true;showDetail();break;case'export-backup':exportBackup();break;case'import-backup':$('#backupFile').click();break;case'close-modal':closeModal();break;case'today':scrollToToday();break}});
+document.querySelectorAll('[data-project-filter]').forEach(b=>b.addEventListener('click',()=>{projectFilter=b.dataset.projectFilter;renderProjects()}));$('#projectSearch').addEventListener('input',renderProjects);$('#projectTemplate').addEventListener('change',()=>updateTemplatePreview(true));$('#projectStartNew').addEventListener('change',()=>{if($('#projectTemplate').value)updateTemplatePreview(false)});$('#topToday').textContent=today.toLocaleDateString('zh-TW',{year:'numeric',month:'long',day:'numeric'});document.addEventListener('click',e=>{const b=e.target.closest('[data-action]');if(!b)return;switch(b.dataset.action){case'new-project':openProject();break;case'new-task':openItem();break;case'back':showList();break;case'logs':showLogs();break;case'log-back':$('#logView').hidden=true;showDetail();break;case'export-backup':exportBackup();break;case'share-backup':shareBackup(b);break;case'import-backup':$('#backupFile').click();break;case'close-modal':closeModal();break;case'today':scrollToToday();break}});
 $('#projectForm').addEventListener('submit',saveProjectForm);$('#itemForm').addEventListener('submit',saveForm);$('#modalBack').addEventListener('click',e=>{if(e.target===$('#modalBack'))closeModal()});$('#projectModalBack').addEventListener('click',e=>{if(e.target===$('#projectModalBack'))closeModal()});$('#backupFile').addEventListener('change',importBackup);$('#todoForm').addEventListener('submit',e=>{e.preventDefault();const input=$('#todoInput'),text=input.value.trim();if(!text)return;const p=active();p.todos.push({id:id(),text,status:'todo'});record(p,'新增代辦',text,'新增代辦事項');input.value='';persist();renderTodos();input.focus()});$('#logSearch').addEventListener('input',renderLogs);
-$('#projectName').addEventListener('change',()=>{const p=active(),before=p.project;p.project=$('#projectName').value.trim()||'未命名專案';if(before!==p.project)record(p,'修改專案名稱','專案資料',`${before} → ${p.project}`);persist()});const dateFields=['projectStart','projectEnd'];function updateDateSave(){const p=active();$('#saveProjectDates').disabled=$('#projectStart').value===p.start&&$('#projectEnd').value===p.end}for(const field of dateFields)$('#'+field).addEventListener('change',updateDateSave);$('#saveProjectDates').addEventListener('click',()=>{const p=active(),s=$('#projectStart').value,e=$('#projectEnd').value;if(!s||!e){toast('請選擇完整的專案日期');return}if(e<s){toast('結束日期不能早於起始日期');return}const oldStart=p.start,oldEnd=p.end;if(oldStart!==s||oldEnd!==e){p.start=s;p.end=e;record(p,'修改專案日期','專案資料',`${oldStart} – ${oldEnd} → ${s} – ${e}`);persist();renderDetail();toast('專案日期已儲存')}});$('#weekendToggle').addEventListener('click',()=>{active().weekends=!active().weekends;persist();renderDetail()});
+$('#projectName').addEventListener('change',()=>{const p=active(),before=p.project;p.project=$('#projectName').value.trim()||'未命名專案';if(before!==p.project)record(p,'修改專案名稱','專案資料',`${before} → ${p.project}`);persist()});const dateFields=['projectStart','projectEnd'];function updateDateSave(){const p=active();$('#saveProjectDates').disabled=$('#projectStart').value===p.start&&$('#projectEnd').value===p.end}for (const field of dateFields) {
+  const input = document.getElementById(field);
+  input.addEventListener('input', updateDateSave);
+  input.addEventListener('change', updateDateSave);
+}
+$('#saveProjectDates').addEventListener('click',()=>{const p=active(),s=$('#projectStart').value,e=$('#projectEnd').value;if(!s||!e){toast('請選擇完整的專案日期');return}if(e<s){toast('結束日期不能早於起始日期');return}const oldStart=p.start,oldEnd=p.end;if(oldStart!==s||oldEnd!==e){p.start=s;p.end=e;record(p,'修改專案日期','專案資料',`${oldStart} – ${oldEnd} → ${s} – ${e}`);persist();renderDetail();toast('專案日期已儲存')}});$('#weekendToggle').addEventListener('click',()=>{active().weekends=!active().weekends;persist();renderDetail()});
 load();projects.forEach(p=>{if(!Array.isArray(p.logs))p.logs=[]});ensureHardwareSample();showList();
 })();
 </script></body></html>
